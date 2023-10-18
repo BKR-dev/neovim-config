@@ -17,3 +17,6 @@ now all plugins are getting installed, the configurations are already in place!
 
 and now you have a pretty decent neovim config!
 
+---
+
+There is a branch for Templ integration, it is working but you need to install the templ binary so please read the templ documentation prior (https://templ.guide/commands-and-tools/ide-support/)
