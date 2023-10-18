@@ -26,6 +26,9 @@ return require('packer').startup(function(use)
 	-- install undotree for changes in files
 	use('mbbill/undotree')
 
+	-- tree-sitter-templ plugin
+	use('vrischmann/tree-sitter-templ')
+
 	-- install lsp-zero for lsp support
 	use {
 		'VonHeikemen/lsp-zero.nvim',

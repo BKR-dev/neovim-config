@@ -11,6 +11,7 @@ lsp.ensure_installed({
 	'gopls',
 	'eslint',
 	'lua_ls',
+	'templ'
 })
 
 -- always use active LS to fromat on save
@@ -37,6 +38,12 @@ cmp_mappings['<S-Tab>'] = nil
 
 lsp.setup_nvim_cmp({
 	mapping = cmp_mappings
+})
+
+vim.filetype.add({
+	extension = {
+	templ = "templ",
+	},
 })
 
 -- sets up configuration
