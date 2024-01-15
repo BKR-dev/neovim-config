@@ -29,6 +29,13 @@ return require('packer').startup(function(use)
     --haskell plugin
     use('mrcjkb/haskell-tools.nvim')
 
+    -- diagnostics in virtual lines
+    use({
+  	"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+  	config = function()
+    	require("lsp_lines").setup()
+  	end,
+    })
     -- TODO-comments
     use {
         'folke/todo-comments.nvim',
