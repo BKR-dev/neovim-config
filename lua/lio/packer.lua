@@ -4,47 +4,63 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-	-- Packer can manage itself
-	use('wbthomason/packer.nvim')
-	-- Install Palenightfall colorscheme
-	use('JoosepAlviste/palenightfall.nvim')
-	-- install telescope for neat file finds
-	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.2',
-		-- or , branch = '0.1.x',
-		requires = { { 'nvim-lua/plenary.nvim' } }
-	}
-	-- install treesitter GOAT syntax highlighting
-	use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+    -- Packer can manage itself
+    use('wbthomason/packer.nvim')
+    -- Install Palenightfall colorscheme
+    use('JoosepAlviste/palenightfall.nvim')
+    -- install telescope for neat file finds
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.2',
+        -- or , branch = '0.1.x',
+        requires = { { 'nvim-lua/plenary.nvim' } }
+    }
+    -- install treesitter GOAT syntax highlighting
+    use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 
-	-- install harpoon for quickmenu file storage and switch
-	use('theprimeagen/harpoon')
+    -- install harpoon for quickmenu file storage and switch
+    use('theprimeagen/harpoon')
 
-	-- install fugitive for insane git integration
-	use('tpope/vim-fugitive')
+    -- install fugitive for insane git integration
+    use('tpope/vim-fugitive')
 
-	-- install undotree for changes in files
-	use('mbbill/undotree')
+    -- install undotree for changes in files
+    use('mbbill/undotree')
 
-	-- install lsp-zero for lsp support
-	use {
-		'VonHeikemen/lsp-zero.nvim',
-		branch = 'v2.x',
-		requires = {
-			-- LSP Support
-			{ 'neovim/nvim-lspconfig' }, -- Required
-			{       -- Optional
-				'williamboman/mason.nvim',
-				run = function()
-					pcall(vim.cmd, 'MasonUpdate')
-				end,
-			},
-			{ 'williamboman/mason-lspconfig.nvim' }, -- Optional
+    --haskell plugin
+    use('mrcjkb/haskell-tools.nvim')
 
-			-- Autocompletion
-			{ 'hrsh7th/nvim-cmp' }, -- Required
-			{ 'hrsh7th/cmp-nvim-lsp' }, -- Required
-			{ 'L3MON4D3/LuaSnip' }, -- Required
-		}
-	}
+    -- diagnostics in virtual lines
+    use({
+  	"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+  	config = function()
+    	require("lsp_lines").setup()
+  	end,
+    })
+    -- TODO-comments
+    use {
+        'folke/todo-comments.nvim',
+        requires = "nvim-lua/plenary.nvim",
+    }
+
+    -- install lsp-zero for lsp support
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v2.x',
+        requires = {
+            -- LSP Support
+            { 'neovim/nvim-lspconfig' }, -- Required
+            {                            -- Optional
+                'williamboman/mason.nvim',
+                run = function()
+                    pcall(vim.cmd, 'MasonUpdate')
+                end,
+            },
+            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+
+            -- Autocompletion
+            { 'hrsh7th/nvim-cmp' },     -- Required
+            { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+            { 'L3MON4D3/LuaSnip' },     -- Required
+        }
+    }
 end)
