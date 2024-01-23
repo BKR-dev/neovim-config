@@ -6,6 +6,8 @@ local function goimports()
   vim.api.nvim_command('%!goimports')
   -- Restore the cursor position
   vim.api.nvim_win_set_cursor(0, cursor_pos)
+  -- Save the File
+  vim.api.nvim_command('w')
 end
 
 -- Create a command that calls the goimports Lua function
