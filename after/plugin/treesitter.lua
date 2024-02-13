@@ -23,3 +23,8 @@ treesitter_parser_config.templ = {
 }
 
 vim.treesitter.language.register('templ', 'templ')
+vim.filetype.add({
+    extension = {
+        templ = "templ",
+    },
+})
