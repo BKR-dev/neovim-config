@@ -6,14 +6,25 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use('wbthomason/packer.nvim')
+    
     -- Install Palenightfall colorscheme
     use('JoosepAlviste/palenightfall.nvim')
+    
     -- install telescope for neat file finds
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.2',
         -- or , branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
+
+    -- easy to use comments
+    use{
+ 	'numToStr/Comment.nvim',
+	config = function()
+		require('Comment').setup()
+	end
+	}
+    
     -- install treesitter GOAT syntax highlighting
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 
@@ -36,6 +47,7 @@ return require('packer').startup(function(use)
     	require("lsp_lines").setup()
   	end,
     })
+    
     -- TODO-comments
     use {
         'folke/todo-comments.nvim',
