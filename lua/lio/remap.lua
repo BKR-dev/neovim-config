@@ -2,6 +2,7 @@
 local function goimports()
     -- check if buffer is a go file
     if vim.bo.filetype == 'go' then
+        vim.api.nvim_command('w')
         -- Save the current cursor position
         local cursor_pos = vim.api.nvim_win_get_cursor(0)
         -- Run goimports on the entire buffer
@@ -18,16 +19,32 @@ local function goimports()
         end
         -- Save the File
         vim.api.nvim_command('w')
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, false, true), 'n', true)
         -- Restore the cursor position
         vim.api.nvim_win_set_cursor(0, cursor_pos)
     end
     -- Save the File
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, false, true), 'n', true)
     vim.api.nvim_command('w')
+end
+
+-- this isnt really working but i thought hey, why not? and the answer is : plugins
+-- thats why
+local function addSingleComment()
+    if vim.bo.filetype == 'go' then
+        local cursor_pos = vim.api.nvim_win_get_cursor(0)
+        vim.api.nvim_command('I//<Esc>')
+        vim.api.nvim_win_set_cursor(0, cursor_pos)
+    end
+    if vim.bo.filetype == 'lua' then
+        local cursor_pos = vim.api.nvim_win_get_cursor(0)
+        vim.api.nvim_command('I--<Esc>')
+        vim.api.nvim_win_set_cursor(0, cursor_pos)
+    end
 end
 
 -- Create a command that calls the goimports Lua function
 vim.api.nvim_create_user_command('GoImports', goimports, {})
-
 
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>ft", vim.cmd.Ex)
@@ -35,3 +52,6 @@ vim.api.nvim_set_keymap('i', '<F13>', '<Esc>:w<CR>', { noremap = true, silent = 
 vim.api.nvim_set_keymap('v', '<F13>', '<Esc>:w<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<F13>', ':GoImports<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>u', ':UndotreeToggle<CR><C-w>h', { noremap = true, silent = true })
+--vim.api.nvim_set_keymap('n', '<leader>co', ':CommentOut<CR>', { noremap = true, silent = true })
+--vim.api.nvim_set_keymap('v', '<Up>', ':m \'<-2<CR>gv=gv', { noremap = true, silent = true })
+--vim.api.nvim_set_keymap('v', '<Down>', ':m \'>+1<CR>gv=gv', { noremap = true, silent = true })

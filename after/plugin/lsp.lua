@@ -11,6 +11,12 @@ lsp.ensure_installed({
     'gopls',
     'eslint',
     'lua_ls',
+<<<<<<< HEAD
+=======
+    'tsserver',
+    'html',
+    'tailwindcss',
+>>>>>>> a3efbae (no idea whats going on i forgot)
 })
 
 -- always use active LS to fromat on save
@@ -37,6 +43,7 @@ cmp_mappings['<S-Tab>'] = nil
 
 lsp.setup_nvim_cmp({
     mapping = cmp_mappings
+<<<<<<< HEAD
 })
 
 -- add templ files to lsp
@@ -44,7 +51,27 @@ vim.filetype.add({
     extension = {
         templ = "templ"
     },
+=======
+>>>>>>> a3efbae (no idea whats going on i forgot)
 })
+
+-- setup terraform lsp
+require 'lspconfig'.terraformls.setup {}
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    pattern = { "*.tf", "*.tfvars" },
+    callback = function()
+        vim.lsp.buf.format()
+    end,
+})
+
+
+-- setup vtsls lsp
+require 'lspconfig'.vls.setup {
+    on_attach = function(client, bufnr)
+        lsp.default_keymaps({ buffer = bufnr })
+        lsp.buffer_autoformat()
+    end
+}
 
 -- sets up configuration
 lsp.setup()
