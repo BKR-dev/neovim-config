@@ -6,10 +6,10 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use('wbthomason/packer.nvim')
-    
+
     -- Install Palenightfall colorscheme
     use('JoosepAlviste/palenightfall.nvim')
-    
+
     -- install telescope for neat file finds
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.2',
@@ -18,13 +18,13 @@ return require('packer').startup(function(use)
     }
 
     -- easy to use comments
-    use{
- 	'numToStr/Comment.nvim',
-	config = function()
-		require('Comment').setup()
-	end
-	}
-    
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
+
     -- install treesitter GOAT syntax highlighting
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 
@@ -45,6 +45,9 @@ return require('packer').startup(function(use)
         end
     })
 
+    -- center a buffer for no neck pain
+    use { "shortcuts/no-neck-pain.nvim", tag = "*" }
+
     -- install undotree for changes in files
     use('mbbill/undotree')
 
@@ -53,12 +56,11 @@ return require('packer').startup(function(use)
 
     -- diagnostics in virtual lines
     use({
-  	"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-  	config = function()
-    	require("lsp_lines").setup()
-  	end,
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        config = function()
+            require("lsp_lines").setup()
+        end,
     })
-    
     -- TODO-comments
     use {
         'folke/todo-comments.nvim',
