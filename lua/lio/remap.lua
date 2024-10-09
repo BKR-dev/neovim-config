@@ -28,8 +28,7 @@ local function goimports()
     vim.api.nvim_command('w')
 end
 
--- this isnt really working but i thought hey, why not? and the answer is : plugins
--- thats why
+-- this isnt really working but i thought hey, why not? and the answer is : pluginslocal
 local function addSingleComment()
     if vim.bo.filetype == 'go' then
         local cursor_pos = vim.api.nvim_win_get_cursor(0)
@@ -43,11 +42,22 @@ local function addSingleComment()
     end
 end
 
+vim.g.copilot_enabled = false
+function ToggleCopilot()
+    if vim.g.copilot_enabled then
+        vim.cmd('Copilot disable')
+        vim.g.copilot_enabled = false
+    else
+        vim.cmd('Copilot enable')
+        vim.g.copilot_enabled = true
+    end
+end
+
 -- Create a command that calls the goimports Lua function
 vim.api.nvim_create_user_command('GoImports', goimports, {})
-
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>ft", vim.cmd.Ex)
+vim.api.nvim_set_keymap('n', '<leader>cc', ':lua ToggleCopilot()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<F13>', '<Esc>:w<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<F13>', '<Esc>:w<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<F13>', ':GoImports<CR>', { noremap = true, silent = true })
