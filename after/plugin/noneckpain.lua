@@ -1,5 +1,5 @@
 require("no-neck-pain").setup({
-    width = 100,
+    width = 120,
     minSideBufferWidth = 10,
     autocmds = {
         enableOnVimEnter = true,
@@ -7,8 +7,13 @@ require("no-neck-pain").setup({
     mappings = {
         enabled = true,
     },
+    integrations = {
+        -- seems to need some config in undotree maybe?
+        undotree = {
+            position = "right",
+        },
+    },
     buffers = {
-        -- not working for some reason!?
         scratchPad = {
             enabled = true,
             location = "~/Git/ScratchPadFiles/"
@@ -16,7 +21,9 @@ require("no-neck-pain").setup({
         bo = {
             filetype = "md",
         },
+        -- not working for some reason!?
         colors = {
+            backgroundColor = "#525252",
             right = {
                 backgroundColor = "tokyonight-moon",
             },
