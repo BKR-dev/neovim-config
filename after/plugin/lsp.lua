@@ -11,7 +11,6 @@ lsp.ensure_installed({
     'gopls',
     'eslint',
     'lua_ls',
-    'tsserver',
     'html',
     'tailwindcss',
 })
