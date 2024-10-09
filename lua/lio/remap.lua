@@ -62,7 +62,7 @@ vim.keymap.set("n", "<leader>ft", vim.cmd.Ex)
 -- toggle Copilot on/off - disabled on start
 vim.api.nvim_set_keymap('n', '<leader>cc', ':lua ToggleCopilot()<CR>', { noremap = true, silent = true })
 -- toggle between colorschemes
-vim.api.nvim_set_keymap('n', '<leader>tt', ':lua ToggleTheme()<CR>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>tt', ':lua ToggleTheme()<CR>', { noremap = true, silent = true })
 -- Capslock is mapped to F13 - always escapes modes and saves file
 vim.api.nvim_set_keymap('i', '<F13>', '<Esc>:w<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<F13>', '<Esc>:w<CR>', { noremap = true, silent = true })
