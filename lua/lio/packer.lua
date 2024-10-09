@@ -10,6 +10,9 @@ return require('packer').startup(function(use)
     -- Install Palenightfall colorscheme
     use('JoosepAlviste/palenightfall.nvim')
 
+    -- Install catpuccin colorscheme
+    use { "catppuccin/nvim", as = "catppuccin" }
+
     -- install telescope for neat file finds
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.2',
