@@ -34,8 +34,16 @@ return require('packer').startup(function(use)
     -- install fugitive for insane git integration
     use('tpope/vim-fugitive')
 
-    -- install vim-surround for surroundings aka parentheses and such
-    use('tpope/vim-surround')
+    -- use nvim surround for easy surroundings
+    use({
+        "kylechui/nvim-surround",
+        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+        config = function()
+            require("nvim-surround").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
+    })
 
     -- install undotree for changes in files
     use('mbbill/undotree')
