@@ -15,7 +15,7 @@ now all plugins are getting installed, the configurations are already in place!
 
 - make it nice and easy `echo "alias v='$(which nvim)" >> ~/.zshrc`
 - to make it even nicer to find your projects use this little alias as well
-`alias fp='(file=$(find ~/Git  -mindepth 1 -maxdepth 1 -type d | sed 's/.*\///' | fzf); [ -n "$file" ] && nvim "$file")'` (You can add more directories and/or adjustthe maxdepth for deeper nested structures)
+`alias fp='(file=$(find ~/Git  -mindepth 1 -maxdepth 1 -type d | fzf); [ -n "$file" ]  && cd "$file" && v .)'` (You can add more directories and/or adjustthe maxdepth for deeper nested structures)
 
 and now you have a pretty decent neovim config!
 
