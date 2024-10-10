@@ -51,8 +51,8 @@ return require('packer').startup(function(use)
     -- install undotree for changes in files
     use('mbbill/undotree')
 
-    --haskell plugin
-    use('mrcjkb/haskell-tools.nvim')
+    -- install a java plugin for neovim
+    use('nvim-java/nvim-java')
 
     -- diagnostics in virtual lines
     use({
