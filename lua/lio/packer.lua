@@ -1,5 +1,4 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
@@ -41,9 +40,8 @@ return require('packer').startup(function(use)
     -- install undotree for changes in files
     use('mbbill/undotree')
 
-	-- cute little icons
-         use  ( 'nvim-tree/nvim-web-devicons')
-
+    -- cute little icons
+    use('nvim-tree/nvim-web-devicons')
 
     -- install all nvim-java packages
     use('nvim-java/nvim-java')
@@ -55,7 +53,6 @@ return require('packer').startup(function(use)
     use('JavaHello/spring-boot.nvim')
     use('mfussenegger/nvim-dap')
     use('MunifTanjim/nui.nvim')
-
 
     -- diagnostics in virtual lines
     use({
