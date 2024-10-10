@@ -12,7 +12,6 @@ lsp.ensure_installed({
     'eslint',
     'lua_ls',
     'html',
-    'tailwindcss',
 })
 
 -- always use active LS to fromat on save
@@ -24,6 +23,11 @@ end)
 require('lspconfig').gopls.setup({
     usePlaceholders = true,
 })
+
+require('java').setup({
+})
+
+require('lspconfig').jdtls.setup({})
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
