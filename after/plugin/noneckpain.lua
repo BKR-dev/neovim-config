@@ -7,12 +7,6 @@ require("no-neck-pain").setup({
     mappings = {
         enabled = true,
     },
-    integrations = {
-        -- seems to need some config in undotree maybe?
-        undotree = {
-            position = "right",
-        },
-    },
     buffers = {
         scratchPad = {
             enabled = true,

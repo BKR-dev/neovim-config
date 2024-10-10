@@ -75,7 +75,6 @@ time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   ["Comment.nvim"] = {
-    config = { "\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0" },
     loaded = true,
     path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/Comment.nvim",
     url = "https://github.com/numToStr/Comment.nvim"
@@ -106,6 +105,11 @@ _G.packer_plugins = {
     path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/lsp_lines.nvim",
     url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
   },
+  ["lua-async-await"] = {
+    loaded = true,
+    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/lua-async-await",
+    url = "https://github.com/nvim-java/lua-async-await"
+  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -121,15 +125,45 @@ _G.packer_plugins = {
     path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/no-neck-pain.nvim",
     url = "https://github.com/shortcuts/no-neck-pain.nvim"
   },
+  ["nui.nvim"] = {
+    loaded = true,
+    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nui.nvim",
+    url = "https://github.com/MunifTanjim/nui.nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    url = "https://github.com/mfussenegger/nvim-dap"
+  },
   ["nvim-java"] = {
     loaded = true,
     path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-java",
     url = "https://github.com/nvim-java/nvim-java"
+  },
+  ["nvim-java-core"] = {
+    loaded = true,
+    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-java-core",
+    url = "https://github.com/nvim-java/nvim-java-core"
+  },
+  ["nvim-java-dap"] = {
+    loaded = true,
+    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-java-dap",
+    url = "https://github.com/nvim-java/nvim-java-dap"
+  },
+  ["nvim-java-refactor"] = {
+    loaded = true,
+    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-java-refactor",
+    url = "https://github.com/nvim-java/nvim-java-refactor"
+  },
+  ["nvim-java-test"] = {
+    loaded = true,
+    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-java-test",
+    url = "https://github.com/nvim-java/nvim-java-test"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -137,7 +171,6 @@ _G.packer_plugins = {
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-surround"] = {
-    config = { "\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18nvim-surround\frequire\0" },
     loaded = true,
     path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-surround",
     url = "https://github.com/kylechui/nvim-surround"
@@ -146,6 +179,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -161,6 +199,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["spring-boot.nvim"] = {
+    loaded = true,
+    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/spring-boot.nvim",
+    url = "https://github.com/JavaHello/spring-boot.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
@@ -185,18 +228,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-surround
-time([[Config for nvim-surround]], true)
-try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18nvim-surround\frequire\0", "config", "nvim-surround")
-time([[Config for nvim-surround]], false)
 -- Config for: lsp_lines.nvim
 time([[Config for lsp_lines.nvim]], true)
 try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14lsp_lines\frequire\0", "config", "lsp_lines.nvim")
 time([[Config for lsp_lines.nvim]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
-time([[Config for Comment.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
