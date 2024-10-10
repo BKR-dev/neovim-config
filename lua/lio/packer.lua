@@ -18,12 +18,7 @@ return require('packer').startup(function(use)
     }
 
     -- easy to use comments
-    use {
-        'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
-        end
-    }
+    use('numToStr/Comment.nvim')
 
     -- install treesitter GOAT syntax highlighting
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
@@ -38,11 +33,6 @@ return require('packer').startup(function(use)
     use({
         "kylechui/nvim-surround",
         tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-        config = function()
-            require("nvim-surround").setup({
-                -- Configuration here, or leave empty to use defaults
-            })
-        end
     })
 
     -- center a buffer for no neck pain
@@ -51,8 +41,21 @@ return require('packer').startup(function(use)
     -- install undotree for changes in files
     use('mbbill/undotree')
 
-    -- install a java plugin for neovim
+	-- cute little icons
+         use  ( 'nvim-tree/nvim-web-devicons')
+
+
+    -- install all nvim-java packages
     use('nvim-java/nvim-java')
+    use('nvim-java/nvim-java-refactor')
+    use('nvim-java/nvim-java-core')
+    use('nvim-java/lua-async-await')
+    use('nvim-java/nvim-java-test')
+    use('nvim-java/nvim-java-dap')
+    use('JavaHello/spring-boot.nvim')
+    use('mfussenegger/nvim-dap')
+    use('MunifTanjim/nui.nvim')
+
 
     -- diagnostics in virtual lines
     use({
@@ -76,9 +79,7 @@ return require('packer').startup(function(use)
             { 'neovim/nvim-lspconfig' }, -- Required
             {                            -- Optional
                 'williamboman/mason.nvim',
-                run = function()
-                    pcall(vim.cmd, 'MasonUpdate')
-                end,
+                run = ':MasonUpdate',
             },
             { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
