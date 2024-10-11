@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/Users/lteixeir/.cache/nvim/packer_hererocks/2.1.1727870382/share/lua/5.1/?.lua;/Users/lteixeir/.cache/nvim/packer_hererocks/2.1.1727870382/share/lua/5.1/?/init.lua;/Users/lteixeir/.cache/nvim/packer_hererocks/2.1.1727870382/lib/luarocks/rocks-5.1/?.lua;/Users/lteixeir/.cache/nvim/packer_hererocks/2.1.1727870382/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/Users/lteixeir/.cache/nvim/packer_hererocks/2.1.1727870382/lib/lua/5.1/?.so"
+local package_path_str = "/Users/lio/.cache/nvim/packer_hererocks/2.1.1720049189/share/lua/5.1/?.lua;/Users/lio/.cache/nvim/packer_hererocks/2.1.1720049189/share/lua/5.1/?/init.lua;/Users/lio/.cache/nvim/packer_hererocks/2.1.1720049189/lib/luarocks/rocks-5.1/?.lua;/Users/lio/.cache/nvim/packer_hererocks/2.1.1720049189/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/Users/lio/.cache/nvim/packer_hererocks/2.1.1720049189/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -76,153 +76,153 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   ["Comment.nvim"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/Comment.nvim",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/Comment.nvim",
     url = "https://github.com/numToStr/Comment.nvim"
   },
   LuaSnip = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["cmp-nvim-lsp"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
   harpoon = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/harpoon",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/theprimeagen/harpoon"
   },
   ["lsp-zero.nvim"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
     url = "https://github.com/VonHeikemen/lsp-zero.nvim"
   },
   ["lsp_lines.nvim"] = {
     config = { "\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14lsp_lines\frequire\0" },
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/lsp_lines.nvim",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/lsp_lines.nvim",
     url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
   },
   ["lua-async-await"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/lua-async-await",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/lua-async-await",
     url = "https://github.com/nvim-java/lua-async-await"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
     url = "https://github.com/williamboman/mason-lspconfig.nvim"
   },
   ["mason.nvim"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/mason.nvim",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
   ["no-neck-pain.nvim"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/no-neck-pain.nvim",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/no-neck-pain.nvim",
     url = "https://github.com/shortcuts/no-neck-pain.nvim"
   },
   ["nui.nvim"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nui.nvim",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nui.nvim",
     url = "https://github.com/MunifTanjim/nui.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-dap"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-dap",
     url = "https://github.com/mfussenegger/nvim-dap"
   },
   ["nvim-java"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-java",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-java",
     url = "https://github.com/nvim-java/nvim-java"
   },
   ["nvim-java-core"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-java-core",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-java-core",
     url = "https://github.com/nvim-java/nvim-java-core"
   },
   ["nvim-java-dap"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-java-dap",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-java-dap",
     url = "https://github.com/nvim-java/nvim-java-dap"
   },
   ["nvim-java-refactor"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-java-refactor",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-java-refactor",
     url = "https://github.com/nvim-java/nvim-java-refactor"
   },
   ["nvim-java-test"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-java-test",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-java-test",
     url = "https://github.com/nvim-java/nvim-java-test"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-surround"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-surround",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-surround",
     url = "https://github.com/kylechui/nvim-surround"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
   ["palenightfall.nvim"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/palenightfall.nvim",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/palenightfall.nvim",
     url = "https://github.com/JoosepAlviste/palenightfall.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["spring-boot.nvim"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/spring-boot.nvim",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/spring-boot.nvim",
     url = "https://github.com/JavaHello/spring-boot.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["todo-comments.nvim"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/todo-comments.nvim",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/todo-comments.nvim",
     url = "https://github.com/folke/todo-comments.nvim"
   },
   undotree = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/undotree",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
   },
   ["vim-fugitive"] = {
     loaded = true,
-    path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   }
 }
