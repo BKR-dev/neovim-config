@@ -4,8 +4,8 @@
 - `mv nvim ~/.config/` (backup your nvim config before hand!)
 - install neovim (and npm for eslint, gopls for golang) `brew install neovim npm gopls`
 - install packer (plugin manager)
-- git clone --depth 1 https://github.com/wbthomason/packer.nvim \
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+- `git clone --depth 1 https://github.com/wbthomason/packer.nvim \
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim`
 - neovim ~/.config/nvim/lua/lio/packer.nvim
 - open up neovim and then source the config and sync the package manager
 - `:so`
