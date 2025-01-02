@@ -12,7 +12,7 @@ local function goimports()
         if exit_code ~= 0 then
             print('Undoing due to gofmt error\n')
             -- Undo Changes
-            vim.api.nvim_command('undo')
+            -- vim.api.nvim_command('undo')
             vim.api.nvim_command('undo')
             vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, false, true), 'n', true)
             return
@@ -66,7 +66,8 @@ vim.api.nvim_set_keymap('n', '<leader>cc', ':lua ToggleCopilot()<CR>', { noremap
 -- Capslock is mapped to F13 - always escapes modes and saves file
 vim.api.nvim_set_keymap('i', '<F13>', '<Esc>:w<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<F13>', '<Esc>:w<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<F13>', ':GoImports<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<F13>', '<Esc>:w<CR>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<F13>', ':GoImports<CR>', { noremap = true, silent = true })
 -- toggle undotree on leader-u
 vim.api.nvim_set_keymap('n', '<leader>u', ':UndotreeToggle<CR><C-w>h', { noremap = true, silent = true })
 --vim.api.nvim_set_keymap('n', '<leader>co', ':CommentOut<CR>', { noremap = true, silent = true })

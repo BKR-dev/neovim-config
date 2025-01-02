@@ -24,10 +24,22 @@ require('lspconfig').gopls.setup({
     usePlaceholders = true,
 })
 
+----------- JAVA Setuo ---------------
+
 require('java').setup({
 })
 
-require('lspconfig').jdtls.setup({})
+require('lspconfig').jdtls.setup({
+    settings = {
+        root_markers = {
+            '.git',
+            'pom.xml',
+
+        }
+    }
+})
+
+----------- JAVA Setuo ---------------
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -44,6 +56,31 @@ cmp_mappings['<S-Tab>'] = nil
 lsp.setup_nvim_cmp({
     mapping = cmp_mappings
 })
+
+
+------------ gopls setup -----------------------
+
+-- Enable gopls settings
+local lsp_settings = {
+  usePlaceholders = true,
+  analyses = {
+    unusedparams = true,
+    unusedvars = true,
+    shadowedvars = true,
+    deadcode = true,
+  },
+}
+
+-- Setup gopls
+require('lspconfig').gopls.setup({
+  settings = lsp_settings,
+})
+
+-- vim.cmd [[autocmd BufWritePre *.go lua vim.lsp.buf.format({ async = true })]]
+
+-- vim.api.nvim_create_autocmd('BufWritePre', { pattern = '*.go', callback = function() vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true }) end })
+
+------------ gopls setup -----------------------
 
 -- add templ files to lsp
 vim.filetype.add({

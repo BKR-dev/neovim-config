@@ -2,7 +2,7 @@ require("no-neck-pain").setup({
     width = 120,
     minSideBufferWidth = 10,
     autocmds = {
-        enableOnVimEnter = true,
+        enableOnVimEnter = false,
     },
     mappings = {
         enabled = true,
