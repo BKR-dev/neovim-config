@@ -2,13 +2,13 @@
 
 - clone repo into wherever
 - `mv nvim ~/.config/` (backup your nvim config before hand!)
-- install neovim (and npm for eslint, gopls for golang) `brew install neovim npm gopls`
+- install neovim, wget and npm for plugins / lsps / mason  `brew install neovim npm wget` // `sudo pacman -S neovim npm wget` // you know your 'puter than me
 - install packer (plugin manager)
-- git clone --depth 1 https://github.com/wbthomason/packer.nvim \
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-- neovim ~/.config/nvim/lua/lio/packer.nvim
-- open up neovim and then source the config and sync the package manager
-- `:so`
+- `git clone --depth 1 https://github.com/wbthomason/packer.nvim \
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim`
+- `nvim -c "exec :normal! :source lua/lio/packer.lua '"`
+  - dont worry about the errors, this is happening because all configs for plugins are already in place but the plugins themselves have not yet been installed
+- Now install plaugins via PackerSync
 - `:PackerSync`
 
 now all plugins are getting installed, the configurations are already in place!
