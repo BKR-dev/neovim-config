@@ -41,7 +41,7 @@ require("lazy").setup({
         { 'numToStr/Comment.nvim' },
 
         -- install treesitter GOAT syntax highlighting
-        { 'nvim-treesitter/nvim-treesitter', { build = ':TSUpdate' } },
+        { 'nvim-treesitter/nvim-treesitter' },
 
         -- install harpoon for quickmenu file storage and switch
         { 'theprimeagen/harpoon' },
@@ -70,11 +70,25 @@ require("lazy").setup({
     checker = { enabled = true },
 
 })
+-- Remapps
+--
+-- use sapce-f-t to open the standard vim file navigation
+vim.keymap.set("n", "<leader>ft", vim.cmd.Ex)
+-- Capslock is mapped to F13 - always escapes modes and saves file
+vim.api.nvim_set_keymap('i', '<F20>', '<Esc>:%!goimports<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<F20>', '<Esc>:%!goimports<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<F20>', '<Esc>:%!goimports<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<F13>', '<Esc>:w<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<F13>', '<Esc>:w<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<F13>', '<Esc>:w<CR>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<F13>', ':GoImports<CR>', { noremap = true, silent = true })
+-- toggle undotree on leader-u
+vim.api.nvim_set_keymap('n', '<leader>u', ':UndotreeToggle<CR><C-w>h', { noremap = true, silent = true })
 
 
 
 
-
+-- Making a neat floating terminal
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
 
 local state = {
@@ -129,7 +143,15 @@ local toggle_terminal = function()
     end
 end
 
--- Example usage:
--- Create a floating window with default dimensions
 vim.api.nvim_create_user_command("Floaterminal", toggle_terminal, {})
 vim.keymap.set({ "n", "t" }, "<space>tt", toggle_terminal)
+
+-- Setting colorscheme and making it  looking even cooler
+local function SetTheme(theme)
+    theme = "palenightfall"
+    vim.cmd.colorscheme(theme)
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+end
+
+SetTheme()
