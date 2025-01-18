@@ -54,7 +54,7 @@ function ToggleCopilot()
 end
 
 -- Create a command that calls the goimports Lua function
-vim.api.nvim_create_user_command('GoImports', goimports, {})
+-- vim.api.nvim_create_user_command('GoImports', goimports, {})
 -- Define the leader key to be space
 vim.g.mapleader = " "
 -- use sapce-f-t to open the standard vim file navigation
@@ -64,6 +64,9 @@ vim.api.nvim_set_keymap('n', '<leader>cc', ':lua ToggleCopilot()<CR>', { noremap
 -- toggle between colorschemes
 -- vim.api.nvim_set_keymap('n', '<leader>tt', ':lua ToggleTheme()<CR>', { noremap = true, silent = true })
 -- Capslock is mapped to F13 - always escapes modes and saves file
+vim.api.nvim_set_keymap('i', '<F20>', '<Esc>:%!goimports<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<F20>', '<Esc>:%!goimports<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<F20>', '<Esc>:%!goimports<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<F13>', '<Esc>:w<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<F13>', '<Esc>:w<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<F13>', '<Esc>:w<CR>', { noremap = true, silent = true })
