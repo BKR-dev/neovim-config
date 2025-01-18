@@ -27,8 +27,6 @@ return require('packer').startup(function(use)
     -- install harpoon for quickmenu file storage and switch
     use('theprimeagen/harpoon')
 
-    -- install fugitive for insane git integration
-    use('tpope/vim-fugitive')
 
     -- use nvim surround for easy surroundings
     use({
