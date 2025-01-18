@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/Users/lio/.cache/nvim/packer_hererocks/2.1.1727870382/share/lua/5.1/?.lua;/Users/lio/.cache/nvim/packer_hererocks/2.1.1727870382/share/lua/5.1/?/init.lua;/Users/lio/.cache/nvim/packer_hererocks/2.1.1727870382/lib/luarocks/rocks-5.1/?.lua;/Users/lio/.cache/nvim/packer_hererocks/2.1.1727870382/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/Users/lio/.cache/nvim/packer_hererocks/2.1.1727870382/lib/lua/5.1/?.so"
+local package_path_str = "/Users/lio/.cache/nvim/packer_hererocks/2.1.1732813678/share/lua/5.1/?.lua;/Users/lio/.cache/nvim/packer_hererocks/2.1.1732813678/share/lua/5.1/?/init.lua;/Users/lio/.cache/nvim/packer_hererocks/2.1.1732813678/lib/luarocks/rocks-5.1/?.lua;/Users/lio/.cache/nvim/packer_hererocks/2.1.1732813678/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/Users/lio/.cache/nvim/packer_hererocks/2.1.1732813678/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -105,11 +105,6 @@ _G.packer_plugins = {
     path = "/Users/lio/.local/share/nvim/site/pack/packer/start/lsp_lines.nvim",
     url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
   },
-  ["lua-async-await"] = {
-    loaded = true,
-    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/lua-async-await",
-    url = "https://github.com/nvim-java/lua-async-await"
-  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/Users/lio/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -125,11 +120,6 @@ _G.packer_plugins = {
     path = "/Users/lio/.local/share/nvim/site/pack/packer/start/no-neck-pain.nvim",
     url = "https://github.com/shortcuts/no-neck-pain.nvim"
   },
-  ["nui.nvim"] = {
-    loaded = true,
-    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nui.nvim",
-    url = "https://github.com/MunifTanjim/nui.nvim"
-  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -140,35 +130,25 @@ _G.packer_plugins = {
     path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-dap",
     url = "https://github.com/mfussenegger/nvim-dap"
   },
-  ["nvim-java"] = {
+  ["nvim-dap-go"] = {
     loaded = true,
-    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-java",
-    url = "https://github.com/nvim-java/nvim-java"
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-dap-go",
+    url = "https://github.com/leoluz/nvim-dap-go"
   },
-  ["nvim-java-core"] = {
+  ["nvim-dap-ui"] = {
     loaded = true,
-    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-java-core",
-    url = "https://github.com/nvim-java/nvim-java-core"
-  },
-  ["nvim-java-dap"] = {
-    loaded = true,
-    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-java-dap",
-    url = "https://github.com/nvim-java/nvim-java-dap"
-  },
-  ["nvim-java-refactor"] = {
-    loaded = true,
-    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-java-refactor",
-    url = "https://github.com/nvim-java/nvim-java-refactor"
-  },
-  ["nvim-java-test"] = {
-    loaded = true,
-    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-java-test",
-    url = "https://github.com/nvim-java/nvim-java-test"
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
+    url = "https://github.com/rcarriga/nvim-dap-ui"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-nio"] = {
+    loaded = true,
+    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-nio",
+    url = "https://github.com/nvim-neotest/nvim-nio"
   },
   ["nvim-surround"] = {
     loaded = true,
@@ -199,11 +179,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/lio/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
-  },
-  ["spring-boot.nvim"] = {
-    loaded = true,
-    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/spring-boot.nvim",
-    url = "https://github.com/JavaHello/spring-boot.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
