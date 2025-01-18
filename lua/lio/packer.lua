@@ -40,6 +40,11 @@ return require('packer').startup(function(use)
     -- install undotree for changes in files
     use('mbbill/undotree')
 
+    -- install debugging plugins
+    use { "leoluz/nvim-dap-go" }
+    use { "nvim-neotest/nvim-nio" }
+    use { "rcarriga/nvim-dap-ui" }
+
     -- cute little icons
     use('nvim-tree/nvim-web-devicons')
 
