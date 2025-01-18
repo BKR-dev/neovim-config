@@ -24,22 +24,6 @@ require('lspconfig').gopls.setup({
     usePlaceholders = true,
 })
 
------------ JAVA Setuo ---------------
-
-require('java').setup({
-})
-
-require('lspconfig').jdtls.setup({
-    settings = {
-        root_markers = {
-            '.git',
-            'pom.xml',
-
-        }
-    }
-})
-
------------ JAVA Setuo ---------------
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }

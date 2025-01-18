@@ -15,6 +15,8 @@ return require('packer').startup(function(use)
         -- or , branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
+    -- sintalling dap for debugging
+    use('mfussenegger/nvim-dap')
 
     -- easy to use comments
     use('numToStr/Comment.nvim')
@@ -48,16 +50,6 @@ return require('packer').startup(function(use)
     -- cute little icons
     use('nvim-tree/nvim-web-devicons')
 
-    -- install all nvim-java packages
-    use('nvim-java/nvim-java')
-    use('nvim-java/nvim-java-refactor')
-    use('nvim-java/nvim-java-core')
-    use('nvim-java/lua-async-await')
-    use('nvim-java/nvim-java-test')
-    use('nvim-java/nvim-java-dap')
-    use('JavaHello/spring-boot.nvim')
-    use('mfussenegger/nvim-dap')
-    use('MunifTanjim/nui.nvim')
 
     -- diagnostics in virtual lines
     use({
