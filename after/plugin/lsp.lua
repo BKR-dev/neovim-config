@@ -24,6 +24,22 @@ require('lspconfig').gopls.setup({
     usePlaceholders = true,
 })
 
+----------- JAVA Setuo ---------------
+--
+-- require('java').setup({
+-- })
+--
+-- require('lspconfig').jdtls.setup({
+--     settings = {
+--         root_markers = {
+--             '.git',
+--             'pom.xml',
+--
+--         }
+--     }
+-- })
+--
+----------- JAVA Setuo ---------------
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -46,18 +62,18 @@ lsp.setup_nvim_cmp({
 
 -- Enable gopls settings
 local lsp_settings = {
-  usePlaceholders = true,
-  analyses = {
-    unusedparams = true,
-    unusedvars = true,
-    shadowedvars = true,
-    deadcode = true,
-  },
+    usePlaceholders = true,
+    analyses = {
+        unusedparams = true,
+        unusedvars = true,
+        shadowedvars = true,
+        deadcode = true,
+    },
 }
 
 -- Setup gopls
 require('lspconfig').gopls.setup({
-  settings = lsp_settings,
+    settings = lsp_settings,
 })
 
 -- vim.cmd [[autocmd BufWritePre *.go lua vim.lsp.buf.format({ async = true })]]

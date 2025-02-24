@@ -42,6 +42,9 @@ return require('packer').startup(function(use)
     -- install undotree for changes in files
     use('mbbill/undotree')
 
+    -- install copilot
+    use('github/copilot.vim')
+
     -- install debugging plugins
     use { "leoluz/nvim-dap-go" }
     use { "nvim-neotest/nvim-nio" }
@@ -50,6 +53,16 @@ return require('packer').startup(function(use)
     -- cute little icons
     use('nvim-tree/nvim-web-devicons')
 
+    -- install all nvim-java packages
+    -- use('nvim-java/nvim-java')
+    -- use('nvim-java/nvim-java-refactor')
+    -- use('nvim-java/nvim-java-core')
+    -- use('nvim-java/lua-async-await')
+    -- use('nvim-java/nvim-java-test')
+    -- use('nvim-java/nvim-java-dap')
+    -- use('JavaHello/spring-boot.nvim')
+    use('mfussenegger/nvim-dap')
+    use('MunifTanjim/nui.nvim')
 
     -- diagnostics in virtual lines
     use({
