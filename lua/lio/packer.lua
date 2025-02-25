@@ -61,7 +61,7 @@ return require('packer').startup(function(use)
     -- use('nvim-java/nvim-java-test')
     -- use('nvim-java/nvim-java-dap')
     -- use('JavaHello/spring-boot.nvim')
-    use('mfussenegger/nvim-dap')
+    -- use('mfussenegger/nvim-dap')
     use('MunifTanjim/nui.nvim')
 
     -- diagnostics in virtual lines
