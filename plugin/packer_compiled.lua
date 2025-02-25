@@ -125,14 +125,11 @@ _G.packer_plugins = {
     path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/no-neck-pain.nvim",
     url = "https://github.com/shortcuts/no-neck-pain.nvim"
   },
-<<<<<<< HEAD
-=======
   ["nui.nvim"] = {
     loaded = true,
     path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nui.nvim",
     url = "https://github.com/MunifTanjim/nui.nvim"
   },
->>>>>>> a5f9e6c (little clean up)
   ["nvim-cmp"] = {
     loaded = true,
     path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -145,20 +142,12 @@ _G.packer_plugins = {
   },
   ["nvim-dap-go"] = {
     loaded = true,
-<<<<<<< HEAD
-    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-dap-go",
-=======
     path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-dap-go",
->>>>>>> a5f9e6c (little clean up)
     url = "https://github.com/leoluz/nvim-dap-go"
   },
   ["nvim-dap-ui"] = {
     loaded = true,
-<<<<<<< HEAD
-    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
-=======
     path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
->>>>>>> a5f9e6c (little clean up)
     url = "https://github.com/rcarriga/nvim-dap-ui"
   },
   ["nvim-lspconfig"] = {
@@ -168,11 +157,7 @@ _G.packer_plugins = {
   },
   ["nvim-nio"] = {
     loaded = true,
-<<<<<<< HEAD
-    path = "/Users/lio/.local/share/nvim/site/pack/packer/start/nvim-nio",
-=======
     path = "/Users/lteixeir/.local/share/nvim/site/pack/packer/start/nvim-nio",
->>>>>>> a5f9e6c (little clean up)
     url = "https://github.com/nvim-neotest/nvim-nio"
   },
   ["nvim-surround"] = {
