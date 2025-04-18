@@ -43,7 +43,12 @@ return require('packer').startup(function(use)
     use('mbbill/undotree')
 
     -- install copilot
-    use('zbirenbaum/copilot.vim')
+    use
+    {'zbirenbaum/copilot.vim',
+    config = function()
+        vim.g.copilot_no_tab_map = false
+        end
+    }
 
     -- install debugging plugins
     use { "leoluz/nvim-dap-go" }
