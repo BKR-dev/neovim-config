@@ -44,7 +44,7 @@ return require('packer').startup(function(use)
 
     -- install copilot
     use
-    {'zbirenbaum/copilot.vim',
+    {'zbirenbaum/copilot.lua',
     config = function()
         vim.g.copilot_no_tab_map = false
         end
