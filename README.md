@@ -72,8 +72,6 @@ Use Packer to install all plugins:
    echo "alias fp='(file=$(find ~/Git -mindepth 1 -maxdepth 1 -type d | fzf); [ -n \"$file\" ] && cd \"$file\" && v .)'" >> ~/.zshrc
    ```
 
-#### Optional: For Templ Integration
-If you're using the [Templ](https://templ.guide/commands-and-tools/ide-support/) integration branch, remember to install the `templ` binary by following the official documentation.
 
 ---
 
