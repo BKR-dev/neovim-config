@@ -43,7 +43,7 @@ return require('packer').startup(function(use)
     use('mbbill/undotree')
 
     -- install copilot
-    use('github/copilot.vim')
+    use('zbirenbaum/copilot.vim')
 
     -- install debugging plugins
     use { "leoluz/nvim-dap-go" }
