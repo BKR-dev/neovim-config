@@ -12,6 +12,7 @@ lsp.ensure_installed({
     'eslint',
     'lua_ls',
     'html',
+    'yamlls',
 })
 
 -- always use active LS to fromat on save
@@ -23,6 +24,17 @@ end)
 require('lspconfig').gopls.setup({
     usePlaceholders = true,
 })
+
+require('lspconfig').yamlls.setup {
+
+    settings = {
+        yaml = {
+            schemas = {
+                ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.24.0-standalone-strict/all.json"] = "*.yaml",
+            },
+        },
+    },
+}
 
 ----------- JAVA Setuo ---------------
 --
@@ -106,6 +118,8 @@ require 'lspconfig'.vls.setup {
         lsp.buffer_autoformat()
     end
 }
+
+
 
 -- sets up configuration
 lsp.setup()
