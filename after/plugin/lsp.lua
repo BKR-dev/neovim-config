@@ -54,25 +54,23 @@ require('lspconfig').yamlls.setup {
 ----------- JAVA Setuo ---------------
 
 local cmp = require('cmp')
-local copilot = require('copilot.suggestion')
 
 local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<Tab>'] = function(fallback)
-        if copilot.is_visible() then
-            copilot.accept()
+    ['<Tab>'] = cmp.mapping(function(fallback)
+        if require("copilot.suggestion").is_visible() then
+            require("copilot.suggestion").accept()
         elseif cmp.visible() then
             cmp.select_next_item()
         else
             fallback()
         end
-    end,
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+    end, { "i", "s" }),
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<cr>'] = cmp.mapping.confirm({ select = true }),
     ["<C-Space>"] = cmp.mapping.complete(),
 })
-
 
 lsp.setup_nvim_cmp({
     mapping = cmp_mappings
