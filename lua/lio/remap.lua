@@ -54,7 +54,7 @@ function ToggleCopilot()
 end
 
 vim.api.nvim_set_keymap('n', '<leader>cp', ':lua ToggleCopilot()<CR>', { noremap = true, silent = true })
-
+let g:copilot_no_tab_map = v:true
 -- Create a command that calls the goimports Lua function
 -- vim.api.nvim_create_user_command('GoImports', goimports, {})
 -- Define the leader key to be space
