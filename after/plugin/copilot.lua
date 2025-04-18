@@ -1,4 +1,5 @@
-require("copilot").setup({
+require("copilot").setup {
     filetypes = {
-        yaml = true, }
-})
+        yaml = true,
+    }
+}
