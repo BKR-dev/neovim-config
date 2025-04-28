@@ -90,6 +90,18 @@ return require('packer').startup(function(use)
         requires = "nvim-lua/plenary.nvim",
     }
 
+    use {
+        'hrsh7th/cmp-nvim-lsp-signature-help', -- Signature help
+        'hrsh7th/cmp-buffer',              -- Buffer words
+        'hrsh7th/cmp-path',                -- File paths
+        'hrsh7th/cmp-nvim-lua',            -- Lua API
+        'hrsh7th/cmp-calc',                -- Calculator
+        'hrsh7th/cmp-emoji',               -- Emoji
+        'ray-x/cmp-treesitter',            -- Treesitter 
+        'petertriho/cmp-git',              -- Git completions
+        'saadparwaiz1/cmp_luasnip',        -- Snippet integration
+      }
+
     -- install lsp-zero for lsp support
     use {
         'VonHeikemen/lsp-zero.nvim',

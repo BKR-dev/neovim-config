@@ -104,6 +104,67 @@ end
 local copilot = require("copilot.suggestion") -- Ensure Copilot is properly set up
 
 cmp.setup({
+
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp' },           -- LSP
+        { name = 'nvim_lsp_signature_help' }, -- Function signatures
+        { name = 'luasnip' },            -- Snippets
+        { name = 'path' },               -- File paths
+      }, {
+        { name = 'buffer', keyword_length = 3 },  -- Buffer text (min 3 chars)
+        { name = 'nvim_lua' },           -- Neovim Lua API
+        { name = 'calc' },               -- Math calculations
+        { name = 'emoji' },              -- Emoji completion
+        { name = 'treesitter' },         -- Treesitter-based completion
+        { name = 'git' },                -- Git completion (commit hashes, branches)
+      }),
+
+      formatting = {
+        format = function(entry, vim_item)
+          -- Fancy icons for different types
+          local kind_icons = {
+            Text = "󰉿",
+            Method = "󰆧",
+            Function = "󰊕",
+            Constructor = "",
+            Field = "󰜢",
+            Variable = "󰀫",
+            Class = "󰠱",
+            Interface = "",
+            Module = "",
+            Property = "󰜢",
+            Unit = "󰑭",
+            Value = "󰎠",
+            Enum = "",
+            Keyword = "󰌋",
+            Snippet = "",
+            Color = "󰏘",
+            File = "󰈙",
+            Reference = "󰈇",
+            Folder = "󰉋",
+            EnumMember = "",
+            Constant = "󰏿",
+            Struct = "󰙅",
+            Event = "",
+            Operator = "󰆕",
+            TypeParameter = "",
+          }
+          vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
+          
+          -- Show source name
+          vim_item.menu = ({
+            nvim_lsp = "[LSP]",
+            luasnip = "[Snip]",
+            buffer = "[Buf]",
+            path = "[Path]",
+            nvim_lua = "[Lua]",
+            calc = "[Calc]",
+          })[entry.source.name]
+          
+          return vim_item
+        end,
+      },
+
     mapping = {
         ["<Tab>"] = function(fallback)
             if copilot.is_visible() then
