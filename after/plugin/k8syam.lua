@@ -15,6 +15,9 @@ lspconfig.yamlls.setup {
         -- Add common CRD schemas
         ["https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json"] = "*-application.yaml",
         ["https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/cert-manager.io/certificate_v1.json"] = "*-certificate.yaml",
+        ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*.k8s.yaml",
+        ["https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/crds/application-crd.yaml"] = "*application*.yaml",
+        ["https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/main/example/prometheus-operator-crd/monitoring.coreos.com_alertmanagerconfigs.yaml"] = "*prometheus*.yaml",
         -- Add more schemas as needed for your specific CRDs
       },
       -- General YAML language settings
