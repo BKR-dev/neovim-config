@@ -44,12 +44,6 @@ return require('packer').startup(function(use)
     -- install fugitive for insane git integration
     use('tpope/vim-fugitive')
 
-    -- use nvim surround for easy surroundings
-    use({
-        "kylechui/nvim-surround",
-        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-    })
-
     -- center a buffer for no neck pain
     use { "shortcuts/no-neck-pain.nvim", tag = "*" }
 
