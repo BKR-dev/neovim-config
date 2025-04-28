@@ -1,2 +1,17 @@
 # ignore scratch.file
 scratch.file
+
+# Don't ignore plugin directories
+!/pack/
+!/pack/**/*
+!/plugin/
+!/plugin/**/*
+
+# But still ignore compiled or binary files
+*.so
+*.dll
+*.dylib
+*.exe
+/pack/**/node_modules/
+/pack/
+/plugin/packer_compiled.lua

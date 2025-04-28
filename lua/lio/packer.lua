@@ -1,6 +1,33 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
+-- Get the config directory (where this file resides)
+local config_path = vim.fn.stdpath('config')
+local packer_path = config_path .. '/pack/packer/start/packer.nvim'
+local install_path = packer_path
+
+-- Auto-install packer if not installed
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+    print('Installing packer...')
+    vim.fn.system({
+        'git', 'clone', '--depth', '1',
+        'https://github.com/wbthomason/packer.nvim',
+        install_path
+    })
+    vim.cmd [[packadd packer.nvim]]
+    print('Packer installed!')
+end
+
+-- Configure Packer to use the custom path inside your config directory
+require('packer').init({
+    package_root = config_path .. '/pack',
+    compile_path = config_path .. '/plugin/packer_compiled.lua',
+    display = {
+        open_fn = function()
+            return require('packer.util').float({ border = 'rounded' })
+        end
+    }
+})
+
+-- Make sure Packer is loaded from the custom path
+vim.opt.packpath:prepend(config_path)
 
 return require('packer').startup(function(use)
     -- Packer can manage itself
@@ -19,18 +46,29 @@ return require('packer').startup(function(use)
     use('mfussenegger/nvim-dap')
 
     -- add autopairs
-    use {    'windwp/nvim-autopairs',
-    event = "InsertEnter",
-    config = function()
-        require('nvim-autopairs').setup({
-            check_ts = true,  -- Use treesitter if available
-            ts_config = {
-                lua = {'string'},  -- Don't add pairs in lua string treesitter nodes
-                javascript = {'template_string'},
-                java = false,  -- Don't check treesitter on java
-            }
-        })
-    end}
+    use { 'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        config = function()
+            require('nvim-autopairs').setup({
+                check_ts = true,        -- Use treesitter if available
+                ts_config = {
+                    lua = { 'string' }, -- Don't add pairs in lua string treesitter nodes
+                    javascript = { 'template_string' },
+                    java = false,       -- Don't check treesitter on java
+                }
+            })
+        end }
+
+    use {
+        'fj0rd/kubernets.nvim', -- K8s specific features and integrations
+        requires = {
+            'nvim-lua/plenary.nvim',
+        }
+    }
+    use {
+        'b0o/schemastore.nvim',
+        requires = { 'neovim/nvim-lspconfig' }
+    }
 
     -- easy to use comments
     use('numToStr/Comment.nvim')
@@ -52,9 +90,9 @@ return require('packer').startup(function(use)
 
     -- install copilot
     use
-    {'zbirenbaum/copilot.lua',
-    config = function()
-        vim.g.copilot_no_tab_map = false
+    { 'zbirenbaum/copilot.lua',
+        config = function()
+            vim.g.copilot_no_tab_map = false
         end
     }
 
@@ -92,15 +130,15 @@ return require('packer').startup(function(use)
 
     use {
         'hrsh7th/cmp-nvim-lsp-signature-help', -- Signature help
-        'hrsh7th/cmp-buffer',              -- Buffer words
-        'hrsh7th/cmp-path',                -- File paths
-        'hrsh7th/cmp-nvim-lua',            -- Lua API
-        'hrsh7th/cmp-calc',                -- Calculator
-        'hrsh7th/cmp-emoji',               -- Emoji
-        'ray-x/cmp-treesitter',            -- Treesitter 
-        'petertriho/cmp-git',              -- Git completions
-        'saadparwaiz1/cmp_luasnip',        -- Snippet integration
-      }
+        'hrsh7th/cmp-buffer',                  -- Buffer words
+        'hrsh7th/cmp-path',                    -- File paths
+        'hrsh7th/cmp-nvim-lua',                -- Lua API
+        'hrsh7th/cmp-calc',                    -- Calculator
+        'hrsh7th/cmp-emoji',                   -- Emoji
+        'ray-x/cmp-treesitter',                -- Treesitter
+        'petertriho/cmp-git',                  -- Git completions
+        'saadparwaiz1/cmp_luasnip',            -- Snippet integration
+    }
 
     -- install lsp-zero for lsp support
     use {
@@ -122,3 +160,4 @@ return require('packer').startup(function(use)
         }
     }
 end)
+
