@@ -1,3 +1,28 @@
+-- Add this at the very top:
+
+local function safe_require(module)
+    local status, result = pcall(require, module)
+    if not status then
+      -- Module not found, return a dummy table
+      return {}
+    end
+    return result
+  end
+  
+  -- Make sure packpath includes the config directory
+  vim.opt.packpath:prepend(vim.fn.stdpath('config'))
+  
+  -- Check if essential plugins exist before loading configs
+  local function plugin_exists(name)
+    return vim.fn.empty(vim.fn.glob(vim.fn.stdpath('config') .. '/pack/packer/start/' .. name)) == 0
+  end
+  
+  -- Only attempt to load plugins if they exist
+  if not plugin_exists('packer.nvim') then
+    print("Packer not found. Run setup.sh to install plugins.")
+    -- Still continue loading config to avoid errors
+  end
+
 -- Get the config directory (where this file resides)
 local config_path = vim.fn.stdpath('config')
 local packer_path = config_path .. '/pack/packer/start/packer.nvim'
