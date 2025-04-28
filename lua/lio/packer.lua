@@ -1,3 +1,37 @@
+local M = {}
+
+-- Safe require for plugins
+M.plugin = function(name)
+  local status, plugin = pcall(require, name)
+  if not status then
+    -- print("Could not load plugin: " .. name)
+    return nil
+  end
+  return plugin
+end
+
+-- Check if a plugin exists
+M.has_plugin = function(name)
+  if package.loaded[name] then
+    return true
+  end
+  
+  for _, prefix in ipairs(vim.api.nvim_list_runtime_paths()) do
+    local lua_path = prefix .. "/lua/" .. name:gsub("%.", "/") .. ".lua"
+    local init_path = prefix .. "/lua/" .. name:gsub("%.", "/") .. "/init.lua"
+    
+    if vim.fn.filereadable(lua_path) == 1 or vim.fn.filereadable(init_path) == 1 then
+      return true
+    end
+  end
+  
+  return false
+end
+
+return M
+
+
+
 -- Add this at the very top:
 
 local function safe_require(module)
