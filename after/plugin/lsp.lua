@@ -36,27 +36,67 @@ require('lspconfig').yamlls.setup {
     },
 }
 
------------ JAVA Setuo ---------------
---
--- require('java').setup({
--- })
---
--- require('lspconfig').jdtls.setup({
---     settings = {
---         root_markers = {
---             '.git',
---             'pom.xml',
---
---         }
---     }
--- })
---
------------ JAVA Setuo ---------------
 
+-- Enhanced hover handler for better formatting
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+vim.lsp.util.open_floating_preview = function(contents, syntax, opts)
+  -- Format Go documentation more nicely
+  if syntax == "go" or syntax == "gomod" then
+    -- Process contents for better readability
+    local formatted_contents = {}
+    for _, line in ipairs(contents) do
+      -- Split long lines at meaningful breaks
+      if #line > 80 then
+        line = line:gsub("(%S)%.(%S)", "%1.\n%2")  -- Break after periods
+      end
+      table.insert(formatted_contents, line)
+    end
+    contents = formatted_contents
+  end
+  
+  -- Configure the floating window
+  opts = opts or {}
+  opts.border = opts.border or "rounded"
+  opts.max_width = opts.max_width or 100
+  opts.max_height = opts.max_height or 30
+  
+  -- Return the floating window using the original function
+  return orig_util_open_floating_preview(contents, syntax, opts)
+end
 
--- fix the tab issue 
---
+-- Set hover handler with improved formatting and wrapping
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover, {
+    width = 100,
+    border = "rounded",
+    wrap = true,
+    max_height = 30,
+    max_width = 100,
+  }
+)
 
+vim.diagnostic.config({
+    virtual_text = true,
+    signs = true,
+    update_in_insert = false,
+    underline = true,
+    severity_sort = true,
+    float = {
+      focusable = false,
+      style = 'minimal',
+      border = 'rounded',
+      source = 'always',
+      header = '',
+      prefix = '',
+    },
+  })
+  
+  -- Define diagnostic signs
+  local signs = { Error = "✘", Warn = "▲", Hint = "⚑", Info = "»" }
+  for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  end
 
 local cmp = require('cmp')
 
@@ -87,8 +127,20 @@ cmp.setup({
                 fallback()
             end
         end,
+        -- Add Enter mapping to confirm selection
+        ["<CR>"] = cmp.mapping.confirm({ 
+            select = true,
+            behavior = cmp.ConfirmBehavior.Replace 
+        }),
+    },
+    -- Add snippet support explicitly
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end,
     },
 })
+
 
 ------------ gopls setup -----------------------
 
