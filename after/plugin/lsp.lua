@@ -76,14 +76,14 @@ vim.diagnostic.config({
         prefix = '● ',
         spacing = 4,
         format = function(diagnostic)
-          -- For long messages, just show an indicator
-          if #diagnostic.message > 40 then
-            return "See details... [Press <leader>ld]"
-          end
-          return diagnostic.message
+            -- For long messages, just show an indicator
+            if #diagnostic.message > 80 then
+                return "See details... [Press <leader>ld]"
+            end
+            return diagnostic.message
         end,
-      },
-      
+    },
+
 
     signs = {
         text = {
@@ -877,5 +877,6 @@ vim.api.nvim_create_autocmd("FileType", {
     end
 })
 
-      -- Add a keymap to see full diagnostics
-      vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, { desc = "Show diagnostic details" })
+-- Add a keymap to see full diagnostics
+vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, { desc = "Show diagnostic details" })
+
