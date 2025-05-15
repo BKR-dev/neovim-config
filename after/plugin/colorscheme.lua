@@ -1,8 +1,13 @@
-function SetTheme(theme)
-    theme = "palenightfall"
-    vim.cmd.colorscheme(theme)
-    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-end
-
-SetTheme()
+require('tokyonight').setup({
+    style = 'storm',        -- 'storm', 'moon', 'night' (default is 'storm')
+    transparent = false,    -- Remove background color
+    terminal_colors = true, -- Use theme colors for Neovim terminal
+    onedark = true,         -- Enable OneDark-style color palette
+    styles = {
+        comments = { italic = true },
+        keywords = { italic = true },
+    },
+    cache = true,
+    lualine_bold = true,
+})
+vim.cmd('colorscheme tokyonight')
