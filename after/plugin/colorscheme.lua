@@ -1,8 +1,10 @@
+vim.api.nvim_set_hl(0, "LineNr", { fg = "#ffffff" })                     -- Farbe für Zeilennummern ohne Cursor
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#c8c8c8", ctermfg = 12 }) -- Farbe für Zeilennummer mit Cursor
 require('tokyonight').setup({
-    style = 'storm',        -- 'storm', 'moon', 'night' (default is 'storm')
-    transparent = false,    -- Remove background color
-    terminal_colors = true, -- Use theme colors for Neovim terminal
-    onedark = true,         -- Enable OneDark-style color palette
+    style = 'storm',
+    transparent = true,
+    terminal_colors = true,
+    onedark = true,
     styles = {
         comments = { italic = true },
         keywords = { italic = true },
@@ -10,4 +12,3 @@ require('tokyonight').setup({
     cache = true,
     lualine_bold = true,
 })
-vim.cmd('colorscheme tokyonight')
