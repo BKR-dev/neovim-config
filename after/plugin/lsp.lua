@@ -6,14 +6,6 @@ lsp.preset('recommended')
 -- fix undefined "vim" global
 lsp.nvim_workspace()
 
--- make sure these LS are installed
-lsp.ensure_installed({
-    'gopls',
-    'eslint',
-    'lua_ls',
-    'html',
-    'yamlls',
-})
 
 -- always use active LS to fromat on save
 lsp.on_attach(function(client, bufnr)
@@ -879,4 +871,3 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Add a keymap to see full diagnostics
 vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, { desc = "Show diagnostic details" })
-
