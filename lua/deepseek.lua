@@ -1,3 +1,4 @@
+-- ~/.config/nvim/after/plugin/deepseek.lua
 local keymap = vim.keymap
 local api = vim.api
 local fn = vim.fn
