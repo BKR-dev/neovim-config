@@ -9,6 +9,12 @@ return require('packer').startup(function(use)
     -- Install Palenightfall colorscheme
     use('JoosepAlviste/palenightfall.nvim')
 
+    -- Tokyonight
+    use {
+        'folke/tokyonight.nvim',
+        branch = 'main',
+        requires = 'nvim-treesitter/nvim-treesitter' -- Optional for syntax highlighting
+    }
     -- install telescope for neat file finds
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.2',
