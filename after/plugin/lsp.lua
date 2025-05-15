@@ -105,8 +105,6 @@ local has_words_before = function()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-local copilot = require("copilot.suggestion") -- Ensure Copilot is properly set up
-
 cmp.setup({
 
     sources = cmp.config.sources({
@@ -171,9 +169,7 @@ cmp.setup({
 
     mapping = {
         ["<Tab>"] = function(fallback)
-            if copilot.is_visible() then
-                copilot.accept()
-            elseif cmp.visible() then
+            if cmp.visible() then
                 cmp.select_next_item()
             elseif has_words_before() then
                 cmp.complete()
