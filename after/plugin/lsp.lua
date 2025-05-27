@@ -1,10 +1,7 @@
 local lsp = require('lsp-zero')
 
 -- use reasonable preset
-lsp.preset('recommended')
-
--- fix undefined "vim" global
-lsp.nvim_workspace()
+lsp.preset('manual')
 
 -- always use active LS to fromat on save
 lsp.on_attach(function(client, bufnr)
@@ -12,8 +9,18 @@ lsp.on_attach(function(client, bufnr)
     lsp.buffer_autoformat()
 end)
 
-require('lspconfig').yamlls.setup {
 
+lsp.configure('lua_ls', {
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' },
+            },
+        },
+    },
+})
+
+require('lspconfig').yamlls.setup {
     settings = {
         yaml = {
             schemas = {
@@ -22,45 +29,6 @@ require('lspconfig').yamlls.setup {
         },
     },
 }
-
-
--- Enhanced hover handler for better formatting
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-vim.lsp.util.open_floating_preview = function(contents, syntax, opts)
-    -- Format Go documentation more nicely
-    if syntax == "go" or syntax == "gomod" then
-        -- Process contents for better readability
-        local formatted_contents = {}
-        for _, line in ipairs(contents) do
-            -- Split long lines at meaningful breaks
-            if #line > 80 then
-                line = line:gsub("(%S)%.(%S)", "%1.\n%2") -- Break after periods
-            end
-            table.insert(formatted_contents, line)
-        end
-        contents = formatted_contents
-    end
-
-    -- Configure the floating window
-    opts = opts or {}
-    opts.border = opts.border or "rounded"
-    opts.max_width = opts.max_width or 100
-    opts.max_height = opts.max_height or 30
-
-    -- Return the floating window using the original function
-    return orig_util_open_floating_preview(contents, syntax, opts)
-end
-
--- Set hover handler with improved formatting and wrapping
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-    vim.lsp.handlers.hover, {
-        width = 100,
-        border = "rounded",
-        wrap = true,
-        max_height = 30,
-        max_width = 100,
-    }
-)
 
 -- Add a keymap to see full diagnostics
 vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, { desc = "Show diagnostic details" })
@@ -76,8 +44,6 @@ vim.diagnostic.config({
             return diagnostic.message
         end,
     },
-
-
     signs = {
         text = {
             [vim.diagnostic.severity.ERROR] = "✘",
@@ -107,7 +73,6 @@ local has_words_before = function()
 end
 
 cmp.setup({
-
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },                      -- LSP
         { name = 'nvim_lsp_signature_help' },       -- Function signatures
@@ -120,7 +85,6 @@ cmp.setup({
         { name = 'treesitter' },                    -- Treesitter-based completion
         { name = 'git' },                           -- Git completion (commit hashes, branches)
     }),
-
     formatting = {
         format = function(entry, vim_item)
             -- Fancy icons for different types
@@ -152,7 +116,6 @@ cmp.setup({
                 TypeParameter = "",
             }
             vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
-
             -- Show source name
             vim_item.menu = ({
                 nvim_lsp = "[LSP]",
@@ -162,11 +125,9 @@ cmp.setup({
                 nvim_lua = "[Lua]",
                 calc = "[Calc]",
             })[entry.source.name]
-
             return vim_item
         end,
     },
-
     mapping = {
         ["<Tab>"] = function(fallback)
             if cmp.visible() then
@@ -253,7 +214,7 @@ require('lspconfig').gopls.setup({
         gopls = lsp_settings,
     },
     -- Ensure imports are organized on save
-    on_attach = function(client, bufnr)
+    on_attach = function(bufnr)
         vim.api.nvim_create_autocmd("BufWritePre", {
             pattern = "*.go",
             callback = function()
@@ -303,144 +264,11 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 
 -- setup vtsls lsp
 require 'lspconfig'.vls.setup {
-    on_attach = function(client, bufnr)
+    on_attach = function(bufnr)
         lsp.default_keymaps({ buffer = bufnr })
         lsp.buffer_autoformat()
     end
 }
 
-
-
 -- sets up configuration
 lsp.setup()
-
-local function display_lsp_info()
-    -- Get current cursor position
-    local line = vim.fn.line('.') - 1 -- LSP uses 0-based lines
-    local bufnr = vim.api.nvim_get_current_buf()
-    local current_line = vim.api.nvim_get_current_line()
-    local filetype = vim.bo.filetype
-
-    -- Get all diagnostics on the current line
-    local diagnostics = vim.diagnostic.get(bufnr, { lnum = line })
-
-    -- Check for inlay hints (like "could use tagged switch")
-    local has_hint = current_line:find("could use") or current_line:find("consider") or current_line:find("■")
-
-    -- If no diagnostics or hints, try to get hover information
-    if #diagnostics == 0 and not has_hint then
-        -- Fallback to hover info if available
-        vim.lsp.buf.hover()
-        return
-    end
-
-    -- Get context from the file
-    local start_line = math.max(0, line - 5)
-    local end_line = math.min(line + 5, vim.api.nvim_buf_line_count(0))
-    local context = vim.api.nvim_buf_get_lines(bufnr, start_line, end_line, false)
-
-    -- Create content for the floating window
-    local text = {}
-
-    -- Add diagnostics information
-    if #diagnostics > 0 then
-        table.insert(text, "📊 LSP Diagnostics")
-        table.insert(text, string.rep("─", 50))
-
-        for _, diag in ipairs(diagnostics) do
-            local severity = vim.diagnostic.severity[diag.severity]
-            local icon = "ℹ️ "
-            if severity == "ERROR" then
-                icon = "❌ "
-            elseif severity == "WARN" then
-                icon = "⚠️ "
-            elseif severity == "HINT" then
-                icon = "💡 "
-            end
-
-            table.insert(text, icon .. severity .. ": " .. diag.message)
-
-            -- Add source if available
-            if diag.source then
-                table.insert(text, "   Source: " .. diag.source)
-            end
-
-            -- Add code if available
-            if diag.code then
-                table.insert(text, "   Code: " .. diag.code)
-            end
-
-            table.insert(text, "")
-        end
-    end
-
-    -- Add inlay hint information
-    if has_hint then
-        local hint_text = current_line:match("■(.+)") or
-            current_line:match("could use (.+)") or
-            current_line:match("consider (.+)") or
-            "Code improvement suggestion"
-
-        table.insert(text, "💡 Code Suggestion")
-        table.insert(text, string.rep("─", 50))
-        table.insert(text, hint_text)
-        table.insert(text, "")
-    end
-
-    -- Add code context
-    table.insert(text, "📄 Code Context")
-    table.insert(text, string.rep("─", 50))
-    for i, ctx_line in ipairs(context) do
-        local linenum = start_line + i
-        if linenum == line then
-            table.insert(text, "➤ " .. ctx_line) -- Highlight current line
-        else
-            table.insert(text, "  " .. ctx_line)
-        end
-    end
-
-    -- Create a buffer for our floating window
-    local new_bufnr = vim.api.nvim_create_buf(false, true)
-    vim.api.nvim_buf_set_option(new_bufnr, 'filetype', 'markdown') -- Use markdown for nice formatting
-    vim.api.nvim_buf_set_option(new_bufnr, 'bufhidden', 'wipe')
-
-
-    -- Calculate floating window size
-    local width = math.min(120, vim.o.columns - 4)
-    local height = math.min(40, #text + 2)
-
-    -- Calculate position (centered)
-    local col = math.floor((vim.o.columns - width) / 2)
-    local row = math.floor((vim.o.lines - height) / 2) - 2
-
-    -- Create floating window options
-    local win_opts = {
-        relative = 'editor',
-        width = width,
-        height = height,
-        col = col,
-        row = row,
-        style = 'minimal',
-        border = 'rounded',
-        title = ' LSP Information ',
-        title_pos = 'center'
-    }
-
-    -- Fill the buffer with content
-    vim.api.nvim_buf_set_lines(new_bufnr, 0, -1, false, text)
-    vim.api.nvim_buf_set_option(new_bufnr, 'modifiable', false)
-
-    -- Create the window
-    local win_id = vim.api.nvim_open_win(new_bufnr, true, win_opts)
-
-    -- Add nice highlighting
-    vim.api.nvim_win_set_option(win_id, 'winhl', 'Normal:Normal,FloatBorder:Special')
-
-    -- Add keymaps to close the window
-    vim.keymap.set('n', 'q', function() vim.api.nvim_win_close(win_id, true) end,
-        { buffer = new_bufnr, noremap = true })
-    vim.keymap.set('n', '<Esc>', function() vim.api.nvim_win_close(win_id, true) end,
-        { buffer = new_bufnr, noremap = true })
-    vim.keymap.set('n', '<CR>', function() vim.api.nvim_win_close(win_id, true) end,
-        { buffer = new_bufnr, noremap = true })
-end
