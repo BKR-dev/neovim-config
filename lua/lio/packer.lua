@@ -39,14 +39,23 @@ return require('packer').startup(function(use)
     -- center a buffer for no neck pain
     use { "shortcuts/no-neck-pain.nvim", tag = "*" }
 
+    -- autopairs
+    use {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        config = function()
+            require("nvim-autopairs").setup {}
+        end
+    }
+
     -- install undotree for changes in files
     use('mbbill/undotree')
 
     -- install copilot
     use
-    {'zbirenbaum/copilot.lua',
-    config = function()
-        vim.g.copilot_no_tab_map = false
+    { 'zbirenbaum/copilot.lua',
+        config = function()
+            vim.g.copilot_no_tab_map = false
         end
     }
 

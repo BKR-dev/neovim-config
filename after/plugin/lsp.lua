@@ -54,7 +54,7 @@ require('lspconfig').yamlls.setup {
 ----------- JAVA Setuo ---------------
 
 
--- fix the tab issue 
+-- fix the tab issue
 --
 
 
@@ -139,7 +139,11 @@ require 'lspconfig'.vls.setup {
     end
 }
 
-
+-- setup typescript ls
+require 'lspconfig'.ts_ls.setup {
+    on_attach = on_attach,
+    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+}
 
 -- sets up configuration
 lsp.setup()
