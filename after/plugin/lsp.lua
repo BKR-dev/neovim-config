@@ -77,6 +77,7 @@ vim.diagnostic.config({
     },
 
 
+<<<<<<< HEAD
     signs = {
         text = {
             [vim.diagnostic.severity.ERROR] = "✘",
@@ -97,6 +98,11 @@ vim.diagnostic.config({
         prefix = '',
     },
 })
+=======
+-- fix the tab issue
+--
+
+>>>>>>> 79dbefa (added ts_ls and autopairs)
 
 local cmp = require('cmp')
 
@@ -309,7 +315,11 @@ require 'lspconfig'.vls.setup {
     end
 }
 
-
+-- setup typescript ls
+require 'lspconfig'.ts_ls.setup {
+    on_attach = on_attach,
+    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+}
 
 -- sets up configuration
 lsp.setup()
