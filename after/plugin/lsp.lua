@@ -24,7 +24,7 @@ require('lspconfig').yamlls.setup {
     settings = {
         yaml = {
             schemas = {
-                ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.24.0-standalone-strict/all.json"] = "*.yaml",
+                ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.24.0-standalone-strict/all.json"] = { "*.yaml", "*.yaml.j2" },
             },
         },
     },
@@ -161,57 +161,53 @@ cmp.setup({
 
 
 ------------ gopls setup -----------------------
-
--- Enable gopls settings
-local lsp_settings = {
-    usePlaceholders = true,
-    analyses = {
-        unusedparams = true,
-        unusedvars = true,
-        shadowedvars = true,
-        deadcode = true,
-        nilness = true,
-        useany = true,
-        unusedwrite = true,
-        undeclaredname = true,
-    },
-    -- Add these settings for better import handling
-    gofumpt = true,
-    staticcheck = true,
-    -- Enable import organization
-    codelenses = {
-        gc_details = true,
-        generate = true,
-        regenerate_cgo = true,
-        test = true,
-        tidy = true,
-        upgrade_dependency = true,
-        vendor = true,
-        run_govulncheck = true,
-    },
-    hints = {
-        assignVariableTypes = true,
-        compositeLiteralFields = true,
-        compositeLiteralTypes = true,
-        constantValues = true,
-        functionTypeParameters = true,
-        parameterNames = true,
-        rangeVariableTypes = true,
-    },
-    semanticTokens = true,
-    directoryFilters = { "-node_modules", "-vendor" },
-    symbolMatcher = "fuzzy",
-    symbolStyle = "dynamic",
-    hoverKind = "FullDocumentation",
-    linkTarget = "pkg.go.dev",
-    linksInHover = true,
-    importShortcut = "Definition",
-}
-
 -- Setup gopls
-require('lspconfig').gopls.setup({
+lsp.configure('gopls', {
     settings = {
-        gopls = lsp_settings,
+        gopls = {
+            usePlaceholders = true,
+            analyses = {
+                unusedparams = true,
+                unusedvars = true,
+                shadowedvars = true,
+                deadcode = true,
+                nilness = true,
+                useany = true,
+                unusedwrite = true,
+                undeclaredname = true,
+            },
+            -- Add these settings for better import handling
+            gofumpt = true,
+            staticcheck = true,
+            -- Enable import organization
+            codelenses = {
+                gc_details = true,
+                generate = true,
+                regenerate_cgo = true,
+                test = true,
+                tidy = true,
+                upgrade_dependency = true,
+                vendor = true,
+                run_govulncheck = true,
+            },
+            hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                compositeLiteralTypes = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+            },
+            semanticTokens = true,
+            directoryFilters = { "-node_modules", "-vendor" },
+            symbolMatcher = "fuzzy",
+            symbolStyle = "dynamic",
+            hoverKind = "FullDocumentation",
+            linkTarget = "pkg.go.dev",
+            linksInHover = true,
+            importShortcut = "Definition",
+        },
     },
     -- Ensure imports are organized on save
     on_attach = function(bufnr)
@@ -234,7 +230,6 @@ require('lspconfig').gopls.setup({
                         })
                     end
                 end
-
                 -- Format the buffer
                 vim.lsp.buf.format({ async = false })
             end,
@@ -263,12 +258,12 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 
 
 -- setup vtsls lsp
-require 'lspconfig'.vls.setup {
-    on_attach = function(bufnr)
-        lsp.default_keymaps({ buffer = bufnr })
-        lsp.buffer_autoformat()
-    end
-}
+-- require 'lspconfig'.vls.setup {
+--     on_attach = function(bufnr)
+--         lsp.default_keymaps({ buffer = bufnr })
+--         lsp.buffer_autoformat()
+--     end
+-- }
 
 -- sets up configuration
 lsp.setup()
