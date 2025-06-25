@@ -28,3 +28,8 @@ vim.filetype.add({
         templ = "templ",
     },
 })
+vim.filetype.add({
+    pattern = {
+        ["%.yaml%..+$"] = "yaml"
+    }
+})
