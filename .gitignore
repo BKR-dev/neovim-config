@@ -1,2 +1,5 @@
 # ignore scratch.file
 scratch.file
+
+# ignore the compiled packer file 
+plugin/packer_compiled.lua
