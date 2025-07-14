@@ -3,6 +3,7 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
+
     -- Packer can manage itself
     use('wbthomason/packer.nvim')
 
@@ -10,6 +11,7 @@ return require('packer').startup(function(use)
     use('JoosepAlviste/palenightfall.nvim')
 
     -- install telescope for neat file finds
+    -- relies on ripgrep (brew install ripgrep) for example
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.2',
         -- or , branch = '0.1.x',
@@ -66,15 +68,7 @@ return require('packer').startup(function(use)
     -- cute little icons
     use('nvim-tree/nvim-web-devicons')
 
-    -- install all nvim-java packages
-    -- use('nvim-java/nvim-java')
-    -- use('nvim-java/nvim-java-refactor')
-    -- use('nvim-java/nvim-java-core')
-    -- use('nvim-java/lua-async-await')
-    -- use('nvim-java/nvim-java-test')
-    -- use('nvim-java/nvim-java-dap')
-    -- use('JavaHello/spring-boot.nvim')
-    -- use('mfussenegger/nvim-dap')
+    -- UI component
     use('MunifTanjim/nui.nvim')
 
     -- diagnostics in virtual lines
