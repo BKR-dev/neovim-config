@@ -10,6 +10,12 @@ return require('packer').startup(function(use)
     -- Install Palenightfall colorscheme
     use('JoosepAlviste/palenightfall.nvim')
 
+    -- Tokyonight
+    use {
+        'folke/tokyonight.nvim',
+        branch = 'main',
+        requires = 'nvim-treesitter/nvim-treesitter' -- Optional for syntax highlighting
+    }
     -- install telescope for neat file finds
     -- relies on ripgrep (brew install ripgrep) for example
     use {
@@ -21,22 +27,27 @@ return require('packer').startup(function(use)
     use('mfussenegger/nvim-dap')
 
     -- add autopairs
-    use {    'windwp/nvim-autopairs',
-    event = "InsertEnter",
-    config = function()
-        require('nvim-autopairs').setup({
-            check_ts = true,  -- Use treesitter if available
-            ts_config = {
-                lua = {'string'},  -- Don't add pairs in lua string treesitter nodes
-                javascript = {'template_string'},
-                java = false,  -- Don't check treesitter on java
-            }
-        })
-    end}
+    use { 'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        config = function()
+            require('nvim-autopairs').setup({
+                check_ts = true,        -- Use treesitter if available
+                ts_config = {
+                    lua = { 'string' }, -- Don't add pairs in lua string treesitter nodes
+                    javascript = { 'template_string' },
+                    java = false,       -- Don't check treesitter on java
+                }
+            })
+        end }
 
     -- easy to use comments
     use('numToStr/Comment.nvim')
 
+    -- lualines
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
     -- install treesitter GOAT syntax highlighting
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 
@@ -49,17 +60,29 @@ return require('packer').startup(function(use)
     -- center a buffer for no neck pain
     use { "shortcuts/no-neck-pain.nvim", tag = "*" }
 
-    -- install undotree for changes in files
-    use('mbbill/undotree')
-
-    -- install copilot
-    use
-    {'zbirenbaum/copilot.lua',
-    config = function()
-        vim.g.copilot_no_tab_map = false
+    -- autopairs
+    use {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        config = function()
+            require("nvim-autopairs").setup {}
         end
     }
 
+    -- install undotree for changes in files
+    use('mbbill/undotree')
+
+<<<<<<< HEAD
+=======
+    -- install copilot
+    use
+    { 'zbirenbaum/copilot.lua',
+        config = function()
+            vim.g.copilot_no_tab_map = false
+        end
+    }
+
+>>>>>>> 79dbefa (added ts_ls and autopairs)
     -- install debugging plugins
     use { "leoluz/nvim-dap-go" }
     use { "nvim-neotest/nvim-nio" }
@@ -86,15 +109,15 @@ return require('packer').startup(function(use)
 
     use {
         'hrsh7th/cmp-nvim-lsp-signature-help', -- Signature help
-        'hrsh7th/cmp-buffer',              -- Buffer words
-        'hrsh7th/cmp-path',                -- File paths
-        'hrsh7th/cmp-nvim-lua',            -- Lua API
-        'hrsh7th/cmp-calc',                -- Calculator
-        'hrsh7th/cmp-emoji',               -- Emoji
-        'ray-x/cmp-treesitter',            -- Treesitter 
-        'petertriho/cmp-git',              -- Git completions
-        'saadparwaiz1/cmp_luasnip',        -- Snippet integration
-      }
+        'hrsh7th/cmp-buffer',                  -- Buffer words
+        'hrsh7th/cmp-path',                    -- File paths
+        'hrsh7th/cmp-nvim-lua',                -- Lua API
+        'hrsh7th/cmp-calc',                    -- Calculator
+        'hrsh7th/cmp-emoji',                   -- Emoji
+        'ray-x/cmp-treesitter',                -- Treesitter
+        'petertriho/cmp-git',                  -- Git completions
+        'saadparwaiz1/cmp_luasnip',            -- Snippet integration
+    }
 
     -- install lsp-zero for lsp support
     use {
