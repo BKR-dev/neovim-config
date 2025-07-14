@@ -72,17 +72,6 @@ return require('packer').startup(function(use)
     -- install undotree for changes in files
     use('mbbill/undotree')
 
-<<<<<<< HEAD
-=======
-    -- install copilot
-    use
-    { 'zbirenbaum/copilot.lua',
-        config = function()
-            vim.g.copilot_no_tab_map = false
-        end
-    }
-
->>>>>>> 79dbefa (added ts_ls and autopairs)
     -- install debugging plugins
     use { "leoluz/nvim-dap-go" }
     use { "nvim-neotest/nvim-nio" }
