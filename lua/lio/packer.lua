@@ -23,6 +23,7 @@ return require('packer').startup(function(use)
         -- or , branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' }
     -- sintalling dap for debugging
     use('mfussenegger/nvim-dap')
 
