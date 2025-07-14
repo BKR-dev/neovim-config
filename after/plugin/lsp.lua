@@ -214,11 +214,14 @@ lsp.configure('gopls', {
         vim.api.nvim_create_autocmd("BufWritePre", {
             pattern = "*.go",
             callback = function()
+                -- Use the current buffer to ensure we're targeting the correct one:
+                local current_buf = vim.api.nvim_get_current_buf()
+
                 -- Organize imports before saving
                 local params = vim.lsp.util.make_range_params()
                 params.context = { only = { "source.organizeImports" } }
 
-                local result = vim.lsp.buf_request_sync(bufnr, "textDocument/codeAction", params, 3000)
+                local result = vim.lsp.buf_request_sync(current_buf, "textDocument/codeAction", params, 3000)
                 if result and result[1] then
                     local actions = result[1].result
                     if actions and actions[1] then
@@ -235,7 +238,7 @@ lsp.configure('gopls', {
             end,
             group = vim.api.nvim_create_augroup("GoImports", { clear = true }),
         })
-    end,
+    end
 })
 
 ------------ gopls setup -----------------------
