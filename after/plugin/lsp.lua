@@ -256,14 +256,4 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     end,
 })
 
-
--- setup vtsls lsp
--- require 'lspconfig'.vls.setup {
---     on_attach = function(bufnr)
---         lsp.default_keymaps({ buffer = bufnr })
---         lsp.buffer_autoformat()
---     end
--- }
-
--- sets up configuration
 lsp.setup()
