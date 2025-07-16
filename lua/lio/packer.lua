@@ -3,7 +3,6 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-
     -- Packer can manage itself
     use('wbthomason/packer.nvim')
 
@@ -118,7 +117,7 @@ return require('packer').startup(function(use)
             { 'neovim/nvim-lspconfig' }, -- Required
             {                            -- Optional
                 'williamboman/mason.nvim',
-                run = ':MasonUpdate',
+                -- run = ':MasonUpdate',
             },
             { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
