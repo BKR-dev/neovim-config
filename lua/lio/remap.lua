@@ -35,22 +35,11 @@ for i = 1, 9 do
         tmux_command_async("select-window -t " .. i)
     end, { desc = "Switch to tmux window " .. i })
 end
-
--- Map <Leader>n to switch to the next tmux window
-vim.keymap.set("n", "<Leader>n", function()
-    tmux_command_async("next-window")
-end, { desc = "Switch to the next tmux window" })
-
--- Map <Leader>p to switch to the previous tmux window
-vim.keymap.set("n", "<Leader>p", function()
-    tmux_command_async("previous-window")
-end, { desc = "Switch to the previous tmux window" })
-
 -- Alternative direct window selection for better performance
-vim.keymap.set("n", "<Leader>tn", function()
+vim.keymap.set("n", "<Leader>n", function()
     tmux_command_async("select-window -n")
 end, { desc = "Select next tmux window (faster)" })
 
-vim.keymap.set("n", "<Leader>tp", function()
+vim.keymap.set("n", "<Leader>p", function()
     tmux_command_async("select-window -p")
 end, { desc = "Select previous tmux window (faster)" })
