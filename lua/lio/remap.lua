@@ -1,14 +1,3 @@
-vim.g.copilot_enabled = false
-function ToggleCopilot()
-    if vim.g.copilot_enabled then
-        vim.cmd('Copilot disable')
-        vim.g.copilot_enabled = false
-    else
-        vim.cmd('Copilot enable')
-        vim.g.copilot_enabled = true
-    end
-end
-
 -- Create a command that calls the goimports Lua function
 -- vim.api.nvim_create_user_command('GoImports', goimports, {})
 -- Define the leader key to be space
@@ -38,19 +27,36 @@ local function tmux_command(cmd)
     vim.fn.system("tmux " .. cmd)
 end
 
+-- Use asynchronous job for faster tmux navigation
+local function tmux_command_async(cmd)
+    vim.fn.jobstart("tmux " .. cmd, {
+        detach = true,
+        on_exit = function(_, _, _) end
+    })
+end
+
 -- Map <Leader>t<number> to switch to a specific tmux window
 for i = 1, 9 do
     vim.keymap.set("n", "<Leader>t" .. i, function()
-        tmux_command("select-window -t " .. i)
+        tmux_command_async("select-window -t " .. i)
     end, { desc = "Switch to tmux window " .. i })
 end
 
 -- Map <Leader>n to switch to the next tmux window
 vim.keymap.set("n", "<Leader>n", function()
-    tmux_command("next-window")
+    tmux_command_async("next-window")
 end, { desc = "Switch to the next tmux window" })
 
 -- Map <Leader>p to switch to the previous tmux window
 vim.keymap.set("n", "<Leader>p", function()
-    tmux_command("previous-window")
+    tmux_command_async("previous-window")
 end, { desc = "Switch to the previous tmux window" })
+
+-- Alternative direct window selection for better performance
+vim.keymap.set("n", "<Leader>tn", function()
+    tmux_command_async("select-window -n")
+end, { desc = "Select next tmux window (faster)" })
+
+vim.keymap.set("n", "<Leader>tp", function()
+    tmux_command_async("select-window -p")
+end, { desc = "Select previous tmux window (faster)" })
