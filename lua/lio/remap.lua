@@ -21,12 +21,6 @@ vim.api.nvim_set_keymap('n', '<F13>', '<Esc>:w<CR>', { noremap = true, silent = 
 -- vim.api.nvim_set_keymap('n', '<F13>', ':GoImports<CR>', { noremap = true, silent = true })
 -- toggle undotree on leader-u
 vim.api.nvim_set_keymap('n', '<leader>u', ':UndotreeToggle<CR><C-w>h', { noremap = true, silent = true })
--- move between tmux windows
--- Function to send a tmux command
-local function tmux_command(cmd)
-    vim.fn.system("tmux " .. cmd)
-end
-
 -- Use asynchronous job for faster tmux navigation
 local function tmux_command_async(cmd)
     vim.fn.jobstart("tmux " .. cmd, {
