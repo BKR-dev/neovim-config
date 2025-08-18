@@ -29,7 +29,15 @@ vim.filetype.add({
     },
 })
 vim.filetype.add({
-    pattern = {
-        ["%.yaml%..+$"] = "yaml"
-    }
+    extension = {
+        ["yml.tmpl"] = "yaml",
+    },
+})
+vim.treesitter.language.register('yaml', 'yml.tmpl')
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = "*.yml.tmpl",
+    callback = function()
+        vim.bo.filetype = "yaml" -- Force filetype to yaml
+    end,
 })

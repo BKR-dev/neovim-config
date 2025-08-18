@@ -6,6 +6,14 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use('wbthomason/packer.nvim')
 
+    --tmux plugin
+    use {
+        "christoomey/vim-tmux-navigator",
+        config = function()
+            dofile(vim.fn.stdpath("config") .. "/after/plugin/tmux-navigator.lua")
+        end,
+    }
+
     -- Install Palenightfall colorscheme
     use('JoosepAlviste/palenightfall.nvim')
 
@@ -23,6 +31,7 @@ return require('packer').startup(function(use)
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' }
+
     -- sintalling dap for debugging
     use('mfussenegger/nvim-dap')
 
@@ -58,16 +67,7 @@ return require('packer').startup(function(use)
     use('tpope/vim-fugitive')
 
     -- center a buffer for no neck pain
-    use { "shortcuts/no-neck-pain.nvim", tag = "*" }
-
-    -- autopairs
-    use {
-        "windwp/nvim-autopairs",
-        event = "InsertEnter",
-        config = function()
-            require("nvim-autopairs").setup {}
-        end
-    }
+    -- use { "shortcuts/no-neck-pain.nvim", tag = "*" }
 
     -- install undotree for changes in files
     use('mbbill/undotree')
