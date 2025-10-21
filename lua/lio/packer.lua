@@ -35,6 +35,10 @@ return require('packer').startup(function(use)
     -- sintalling dap for debugging
     use('mfussenegger/nvim-dap')
 
+    -- no-neck-pain
+    use { "shortcuts/no-neck-pain.nvim", tag = "*" }
+
+
     -- add autopairs
     use { 'windwp/nvim-autopairs',
         event = "InsertEnter",
