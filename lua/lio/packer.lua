@@ -67,7 +67,7 @@ return require('packer').startup(function(use)
     use('tpope/vim-fugitive')
 
     -- center a buffer for no neck pain
-    -- use { "shortcuts/no-neck-pain.nvim", tag = "*" }
+    use { "shortcuts/no-neck-pain.nvim", tag = "*" }
 
     -- install undotree for changes in files
     use('mbbill/undotree')
