@@ -31,7 +31,7 @@
 ### Automatic Setup Script (Optional)
 To simplify the setup, you can use the following script to automate most of the steps:
 ```bash
-bash <(wget -qO- https://raw.githubusercontent.com/BKR-dev/neovim-config/main/setup.sh)
+bash <(wget -qO- https://raw.githubusercontent.com/BKR-dev/neovim-config/master/setup.sh)
 ```
 
 ---
