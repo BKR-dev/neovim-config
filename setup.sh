@@ -38,11 +38,22 @@ if ! command -v nvim &> /dev/null; then
 fi
 
 # Check Neovim version (requires 0.10.0+)
-NVIM_VERSION=$(nvim --version | head -n1 | grep -oP '\d+\.\d+\.\d+' | head -n1)
+NVIM_VERSION=$(nvim --version | head -n1 | sed -n 's/.*v\([0-9]*\.[0-9]*\.[0-9]*\).*/\1/p')
 REQUIRED_VERSION="0.10.0"
-if ! printf '%s\n' "$REQUIRED_VERSION" "$NVIM_VERSION" | sort -V -C; then
+
+# Simple version comparison
+version_ge() {
+    # Returns 0 (success) if $1 >= $2
+    printf '%s\n%s\n' "$2" "$1" | sort -V -C
+}
+
+if [ -z "$NVIM_VERSION" ]; then
+    print_warn "Could not detect Neovim version. Proceeding anyway..."
+elif ! version_ge "$NVIM_VERSION" "$REQUIRED_VERSION"; then
     print_error "Neovim version $NVIM_VERSION is too old. This config requires Neovim $REQUIRED_VERSION or later."
     exit 1
+else
+    print_info "Neovim version $NVIM_VERSION detected. ✓"
 fi
 
 # Define directories
