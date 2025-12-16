@@ -1,11 +1,11 @@
 return {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { "nvim-tree/nvim-web-devicons", "folke/tokyonight.nvim" },
     config = function()
         require('lualine').setup {
             options = {
                 icons_enabled = true,
-                theme = 'tokyonight-night',
+                theme = 'tokyonight',
                 component_separators = { left = '', right = '' },
                 section_separators = { left = '', right = '' },
                 disabled_filetypes = {

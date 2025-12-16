@@ -24,21 +24,17 @@ return {
     },
     {
         'neovim/nvim-lspconfig',
-        cmd = {'LspInfo', 'LspInstall', 'LspStart'},
-        event = {'BufReadPre', 'BufNewFile'},
         dependencies = {
             {'hrsh7th/cmp-nvim-lsp'},
             {'williamboman/mason-lspconfig.nvim'},
         },
         config = function()
-            -- This is where the main lsp setup happens
             local lsp_zero = require('lsp-zero')
             lsp_zero.extend_lspconfig()
 
             lsp_zero.on_attach(function(client, bufnr)
                 lsp_zero.default_keymaps({buffer = bufnr})
                 
-                 -- Enable format on save
                 if client.supports_method('textDocument/formatting') then
                     vim.api.nvim_create_autocmd('BufWritePre', {
                         buffer = bufnr,
@@ -54,27 +50,23 @@ return {
                     "awk_ls", "bashls", "cmake", "dockerls", "gopls", 
                     "helm_ls", "html", "lua_ls", "terraformls", "yamlls",
                 },
+                automatic_installation = true,
                 handlers = {
                     lsp_zero.default_setup,
                     lua_ls = function()
                         local lua_opts = lsp_zero.nvim_lua_ls()
                         require('lspconfig').lua_ls.setup(lua_opts)
                     end,
-                    -- You can add other custom handlers here
                     gopls = function()
                        require('lspconfig').gopls.setup({
                             settings = {
                                 gopls = {
                                     usePlaceholders = true,
-                                    analyses = { unusedparams = true, unusedvars = true, shadowedvars = true,
-                                    deadcode = true, nilness = true, useany = true, unusedwrite = true, undeclaredname = true },
+                                    analyses = { unusedparams = true, unusedvars = true, shadowedvars = true, deadcode = true, nilness = true, useany = true, unusedwrite = true, undeclaredname = true },
                                     gofumpt = true,
                                     staticcheck = true,
-                                    codelenses = { gc_details = true, generate = true, regenerate_cgo = true,
-                                    test = true, tidy = true, upgrade_dependency = true, vendor = true, run_govulncheck = true },
-                                    hints = { assignVariableTypes = true, compositeLiteralFields = true,
-                                    compositeLiteralTypes = true, constantValues = true,
-                                    functionTypeParameters = true, parameterNames = true, rangeVariableTypes = true },
+                                    codelenses = { gc_details = true, generate = true, regenerate_cgo = true, test = true, tidy = true, upgrade_dependency = true, vendor = true, run_govulncheck = true },
+                                    hints = { assignVariableTypes = true, compositeLiteralFields = true, compositeLiteralTypes = true, constantValues = true, functionTypeParameters = true, parameterNames = true, rangeVariableTypes = true },
                                     semanticTokens = true,
                                     directoryFilters = { "-node_modules", "-vendor" },
                                     symbolMatcher = "fuzzy",
@@ -86,10 +78,7 @@ return {
                                 },
                             },
                              on_attach = function(client, bufnr)
-                                -- Apply default keymaps
                                 lsp_zero.default_keymaps({ buffer = bufnr })
-
-                                -- Ensure imports are organized on save
                                 vim.api.nvim_create_autocmd("BufWritePre", {
                                     pattern = "*.go",
                                     callback = function()
@@ -132,7 +121,6 @@ return {
                 }
             })
             
-             -- add templ files to lsp
             vim.filetype.add({ extension = { templ = "templ" }, })
             
             vim.api.nvim_create_autocmd({ "BufWritePre" }, {
@@ -142,7 +130,6 @@ return {
                 end,
             })
             
-            -- Diagnostic config
              vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, { desc = "Show diagnostic details" })
 
             vim.diagnostic.config({
@@ -179,15 +166,15 @@ return {
     {
         'hrsh7th/nvim-cmp',
          dependencies = {
-            'hrsh7th/cmp-nvim-lsp-signature-help', -- Signature help
-            'hrsh7th/cmp-buffer',                  -- Buffer words
-            'hrsh7th/cmp-path',                    -- File paths
-            'hrsh7th/cmp-nvim-lua',                -- Lua API
-            'hrsh7th/cmp-calc',                    -- Calculator
-            'hrsh7th/cmp-emoji',                   -- Emoji
-            'ray-x/cmp-treesitter',                -- Treesitter
-            'petertriho/cmp-git',                  -- Git completions
-            'saadparwaiz1/cmp_luasnip',            -- Snippet integration
+            'hrsh7th/cmp-nvim-lsp-signature-help',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-nvim-lua',
+            'hrsh7th/cmp-calc',
+            'hrsh7th/cmp-emoji',
+            'ray-x/cmp-treesitter',
+            'petertriho/cmp-git',
+            'saadparwaiz1/cmp_luasnip',
             'L3MON4D3/LuaSnip',
          },
          config = function()
