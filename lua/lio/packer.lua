@@ -107,24 +107,4 @@ return require('packer').startup(function(use)
         'petertriho/cmp-git',                  -- Git completions
         'saadparwaiz1/cmp_luasnip',            -- Snippet integration
     }
-
-    -- install lsp-zero for lsp support
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
-        requires = {
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' }, -- Required
-            {                            -- Optional
-                'williamboman/mason.nvim',
-                -- run = ':MasonUpdate',
-            },
-            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },     -- Required
-            { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-            { 'L3MON4D3/LuaSnip' },     -- Required
-        }
-    }
 end)
