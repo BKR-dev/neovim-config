@@ -1,78 +1,201 @@
 # Small but Powerful Neovim Config
 
-## Installation Guide
+A lightweight yet feature-rich Neovim configuration using Lazy.nvim for plugin management and lsp-zero for LSP integration.
 
-### Prerequisites
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/BKR-dev/neovim-config.git
-   ```
-2. Backup your current Neovim configuration (if any):
-   ```bash
-   mv ~/.config/nvim ~/.config/nvim.backup
-   ```
-3. Move the cloned configuration into place:
-   ```bash
-   mv neovim-config ~/.config/nvim
-   ```
+## ✨ Features
 
-4. Ensure the following dependencies are installed:
-   - **Neovim**, **wget**, and **npm**:
-     - macOS (Homebrew):  
-       ```bash
-       brew install neovim npm wget
-       ```
-     - Arch Linux (Pacman):  
-       ```bash
-       sudo pacman -S neovim npm wget
-       ```
-     - Other distros: Install these using your package manager.
+- 🚀 **Lazy.nvim** for fast plugin management
+- 🔧 **LSP** support with full language server integration (Lua, Go, Terraform, YAML, and more)
+- 📝 **Rich completion** with multiple sources (LSP, snippets, buffer, treesitter, git)
+- 🎨 **Syntax highlighting** via Treesitter
+- 🔍 **Telescope** for fuzzy finding
+- 🎯 **Harpoon** for quick file navigation
+- 🐛 **DAP** debugging support
+- 💅 **Auto-formatting** on save
+- 📊 **Beautiful diagnostics** with custom signs and virtual text
 
-### Automatic Setup Script (Optional)
-To simplify the setup, you can use the following script to automate most of the steps:
+## 📋 Prerequisites
+
+- **Neovim** 0.10.0 or later
+- **Git**
+- **Node.js** and **npm** (for some LSP servers)
+- **Ripgrep** (for Telescope live grep)
+- **A Nerd Font** (for icons)
+
+### Install Prerequisites
+
+**macOS (Homebrew):**
 ```bash
-bash <(wget -qO- https://raw.githubusercontent.com/BKR-dev/neovim-config/master/setup.sh)
+brew install neovim git node ripgrep
+brew tap homebrew/cask-fonts
+brew install font-hack-nerd-font
+```
+
+**Arch Linux:**
+```bash
+sudo pacman -S neovim git nodejs npm ripgrep
+yay -S ttf-hack-nerd
+```
+
+**Ubuntu/Debian:**
+```bash
+sudo apt install neovim git nodejs npm ripgrep
+```
+
+## 🚀 Quick Installation
+
+**One-line install** (automatically backs up existing config):
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/BKR-dev/neovim-config/main/setup.sh)
+```
+
+This script will:
+- ✅ Check for required dependencies
+- ✅ Backup your existing Neovim configuration
+- ✅ Clone this repository
+- ✅ Install all plugins automatically
+- ✅ Set up LSP servers via Mason
+- ✅ Clean up old plugin managers (Packer)
+
+## 🔧 Manual Installation
+
+If you prefer manual installation:
+
+### 1. Backup Existing Config
+```bash
+mv ~/.config/nvim ~/.config/nvim_backup_$(date +%Y%m%d_%H%M%S)
+mv ~/.local/share/nvim ~/.local/share/nvim_backup_$(date +%Y%m%d_%H%M%S)
+```
+
+### 2. Clone Repository
+```bash
+git clone git@github.com:BKR-dev/neovim-config.git ~/.config/nvim
+```
+
+### 3. Launch Neovim
+```bash
+nvim
+```
+
+Lazy.nvim will automatically install all plugins on first launch. Just wait for it to complete!
+
+### 4. Install LSP Servers
+Open Neovim and run:
+```vim
+:Mason
+```
+
+Then press `i` to install the LSP servers you need (lua_ls, gopls, etc.)
+
+## 📦 Installed Plugins
+
+- **Plugin Manager:** lazy.nvim
+- **LSP:** lsp-zero, nvim-lspconfig, mason.nvim
+- **Completion:** nvim-cmp with multiple sources
+- **Syntax:** nvim-treesitter
+- **Fuzzy Finder:** telescope.nvim
+- **Navigation:** harpoon
+- **Git:** vim-fugitive
+- **Debugging:** nvim-dap, nvim-dap-go, nvim-dap-ui
+- **UI:** lualine, todo-comments, lsp_lines
+- **Utils:** Comment.nvim, nvim-autopairs
+
+## ⚙️ Configuration Structure
+
+```
+~/.config/nvim/
+├── init.lua                 # Entry point
+├── lua/
+│   ├── lio/
+│   │   ├── init.lua        # Core initialization
+│   │   ├── lazy.lua        # Lazy.nvim setup
+│   │   ├── remap.lua       # Key mappings
+│   │   └── set.lua         # Vim settings
+│   ├── plugins/
+│   │   ├── lsp.lua         # LSP configuration
+│   │   ├── telescope.lua   # Telescope config
+│   │   ├── treesitter.lua  # Treesitter config
+│   │   └── ...             # Other plugin configs
+│   └── snippets/
+│       └── go.lua          # Go snippets
+└── setup.sh                # Automated setup script
+```
+
+## 🎯 Key Bindings
+
+Leader key: `<Space>`
+
+### General
+- `<leader>pv` - File explorer
+- `<leader>pf` - Find files
+- `<leader>ps` - Live grep
+- `<leader>ld` - Show diagnostic details
+
+### LSP
+- `gd` - Go to definition
+- `K` - Hover documentation
+- `<leader>ca` - Code actions
+- `<leader>rn` - Rename symbol
+- `[d` / `]d` - Navigate diagnostics
+
+### Harpoon
+- `<leader>a` - Add file to harpoon
+- `<C-e>` - Toggle harpoon menu
+- `<C-h>` / `<C-t>` / `<C-n>` / `<C-s>` - Navigate harpoon files
+
+## 🔄 Updating
+
+To update the configuration and plugins:
+
+```bash
+cd ~/.config/nvim
+git pull
+nvim
+:Lazy sync
+```
+
+## 🗑️ Uninstalling
+
+To restore your previous configuration:
+
+```bash
+rm -rf ~/.config/nvim
+mv ~/.config/nvim_backup_* ~/.config/nvim  # Use your backup timestamp
+```
+
+## 🐛 Troubleshooting
+
+**Plugins not loading:**
+```vim
+:Lazy sync
+```
+
+**LSP not working:**
+```vim
+:Mason
+:LspInfo
+```
+
+**Check for errors:**
+```vim
+:checkhealth
+```
+
+## 💡 Tips
+
+### Useful Aliases
+
+Add these to your `~/.zshrc` or `~/.bashrc`:
+
+```bash
+# Quick access to Neovim
+alias v='nvim'
+
+# Quick project navigation with fzf
+alias fp='(file=$(find ~/Git -mindepth 1 -maxdepth 1 -type d | fzf); [ -n "$file" ] && cd "$file" && v .)'
 ```
 
 ---
 
-### Manual Setup
-
-#### 1. Install Packer (Plugin Manager)
-Install Packer to manage your Neovim plugins:
-```bash
-git clone --depth 1 https://github.com/wbthomason/packer.nvim \
-  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-```
-
-#### 2. Source the Configuration
-Open Neovim and source the plugin configuration file:
-```bash
-nvim -c "exec :normal! :source lua/lio/packer.lua '"
-```
-> ⚠️ Don't worry about any errors at this stage—they occur because the plugins haven't been installed yet.
-
-#### 3. Install Plugins
-Use Packer to install all plugins:
-```bash
-:PackerSync
-```
-
----
-
-### Additional Recommendations
-
-#### Improve Workflow with Aliases
-1. Add an alias for quick access to Neovim:
-   ```bash
-   echo "alias v='$(which nvim)'" >> ~/.zshrc
-   ```
-2. Add an alias to quickly navigate and open projects:
-   ```bash
-   echo "alias fp='(file=$(find ~/Git -mindepth 1 -maxdepth 1 -type d | fzf); [ -n \"$file\" ] && cd \"$file\" && v .)'" >> ~/.zshrc
-   ```
-
-
----
-
-And that's it! You're now ready to enjoy a powerful Neovim setup 🎉.
+Enjoy your powerful Neovim setup! 🎉
