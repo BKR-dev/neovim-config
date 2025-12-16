@@ -47,7 +47,7 @@ sudo apt install neovim git nodejs npm ripgrep
 **One-line install** (automatically backs up existing config):
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/BKR-dev/neovim-config/main/setup.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/BKR-dev/neovim-config/master/setup.sh)
 ```
 
 This script will:
