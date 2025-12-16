@@ -1,5 +1,4 @@
 function SetTheme(theme)
-    theme = theme or "palenightfall"
     vim.cmd.colorscheme(theme)
     -- Custom Highlihgts
     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })                                       -- make stuff transparent because thats nice
