@@ -138,7 +138,6 @@ vim.lsp.config.gopls = {
         -- Go-specific: organize imports on save
         vim.api.nvim_create_autocmd("BufWritePre", {
             buffer = bufnr,
-            pattern = "*.go",
             callback = function()
                 local current_buf = vim.api.nvim_get_current_buf()
                 -- Organize imports before saving
