@@ -138,12 +138,23 @@ if nvim --headless -c "lua print('OK')" -c "qall" 2>/dev/null; then
     echo ""
     print_info "✓ Setup complete! Launch Neovim to start using your configuration."
     echo ""
-    print_info "Backups created:"
-    [ -d "$NVIM_BACKUP_DIR" ] && echo "  - Config: $NVIM_BACKUP_DIR"
-    [ -d "$DATA_BACKUP_DIR" ] && echo "  - Data:   $DATA_BACKUP_DIR"
-    echo ""
-    print_info "To restore your old config, run:"
-    [ -d "$NVIM_BACKUP_DIR" ] && echo "  mv $NVIM_BACKUP_DIR $NVIM_CONFIG_DIR"
+    
+    # Show what backups were created
+    BACKUP_CREATED=false
+    if [ -d "$NVIM_BACKUP_DIR" ] || [ -d "$DATA_BACKUP_DIR" ]; then
+        print_info "Backups created:"
+        [ -d "$NVIM_BACKUP_DIR" ] && echo "  - Config: $NVIM_BACKUP_DIR" && BACKUP_CREATED=true
+        [ -d "$DATA_BACKUP_DIR" ] && echo "  - Data:   $DATA_BACKUP_DIR" && BACKUP_CREATED=true
+        echo ""
+        
+        if [ "$BACKUP_CREATED" = true ]; then
+            print_info "To restore your old config, run:"
+            [ -d "$NVIM_BACKUP_DIR" ] && echo "  rm -rf $NVIM_CONFIG_DIR && mv $NVIM_BACKUP_DIR $NVIM_CONFIG_DIR"
+            [ -d "$DATA_BACKUP_DIR" ] && [ ! -d "$NVIM_BACKUP_DIR" ] && echo "  rm -rf $NVIM_DATA_DIR && mv $DATA_BACKUP_DIR $NVIM_DATA_DIR"
+        fi
+    else
+        print_info "No backups created (config was already up to date or freshly installed)."
+    fi
 else
     print_error "Installation verification failed. Please check for errors above."
     exit 1
