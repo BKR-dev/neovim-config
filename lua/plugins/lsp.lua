@@ -223,7 +223,7 @@ return {
                         importShortcut = "Definition",
                     },
                 },
-                on_attach = function(bufnr)
+                on_attach = function(client, bufnr)
                     -- Apply default keymaps
                     lsp.default_keymaps({ buffer = bufnr })
 
