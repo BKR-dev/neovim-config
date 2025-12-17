@@ -107,7 +107,7 @@ Then press `i` to install the LSP servers you need (lua_ls, gopls, etc.)
 ~/.config/nvim/
 ├── init.lua                 # Entry point
 ├── lua/
-│   ├── lio/
+│   ├── core/
 │   │   ├── init.lua        # Core initialization
 │   │   ├── lazy.lua        # Lazy.nvim setup
 │   │   ├── remap.lua       # Key mappings
