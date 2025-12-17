@@ -122,27 +122,93 @@ Then press `i` to install the LSP servers you need (lua_ls, gopls, etc.)
 └── setup.sh                # Automated setup script
 ```
 
-## 🎯 Key Bindings
+## ⌨️ Key Bindings
 
 Leader key: `<Space>`
 
-### General
-- `<leader>pv` - File explorer
-- `<leader>pf` - Find files
-- `<leader>ps` - Live grep
-- `<leader>ld` - Show diagnostic details
+### 📁 File Navigation & Telescope
 
-### LSP
-- `gd` - Go to definition
-- `K` - Hover documentation
-- `<leader>ca` - Code actions
-- `<leader>rn` - Rename symbol
-- `[d` / `]d` - Navigate diagnostics
+| Key | Action |
+|-----|--------|
+| `<leader>ft` | Open file explorer (netrw) |
+| `<leader>ff` | Find files (Telescope) |
+| `<leader>fg` | Live grep search (Telescope) |
+| `<leader>fb` | Browse open buffers (Telescope) |
+| `<leader>fp` | Find git files (Telescope) |
+| `<leader>fh` | Search help tags (Telescope) |
 
-### Harpoon
-- `<leader>a` - Add file to harpoon
-- `<C-e>` - Toggle harpoon menu
-- `<C-h>` / `<C-t>` / `<C-n>` / `<C-s>` - Navigate harpoon files
+### 🎯 Harpoon (Quick File Navigation)
+
+| Key | Action |
+|-----|--------|
+| `<leader>a` | Add current file to Harpoon |
+| `<C-e>` | Toggle Harpoon menu |
+| `<leader>1` | Jump to Harpoon file 1 |
+| `<leader>2` | Jump to Harpoon file 2 |
+| `<leader>3` | Jump to Harpoon file 3 |
+| `<leader>4` | Jump to Harpoon file 4 |
+| `<leader>8` | Jump to Harpoon file 5 |
+| `<leader>9` | Jump to Harpoon file 6 |
+| `<leader>0` | Jump to Harpoon file 7 |
+
+### 🖥️ Floating Terminal
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `<leader>tt` | Normal/Terminal | Toggle floating terminal window |
+| `<esc><esc>` | Terminal | Exit terminal mode to normal mode |
+| `<leader>ta` | Normal (in terminal) | Add new terminal tab |
+| `<leader>tw` | Normal (in terminal) | Close current terminal tab |
+| `1-9` | Normal (in terminal) | Jump directly to terminal tab 1-9 |
+
+### 🔧 LSP (Language Server)
+
+| Key | Action |
+|-----|--------|
+| `gd` | Go to definition |
+| `K` | Show hover documentation |
+| `<leader>ld` | Show diagnostic details |
+| `<leader>ca` | Code actions |
+| `<leader>rn` | Rename symbol |
+| `[d` | Go to previous diagnostic |
+| `]d` | Go to next diagnostic |
+
+### 🐛 Debugging (DAP)
+
+| Key | Action |
+|-----|--------|
+| `<leader>dw` | Continue/Start debugging |
+| `<leader>do` | Step over |
+| `<leader>di` | Step into |
+| `<leader>d` | Step out |
+| `<leader>q` | Toggle breakpoint |
+| `<leader>Q` | Set conditional breakpoint |
+| `<leader>lp` | Set log point |
+| `<leader>dr` | Open REPL |
+| `<leader>dl` | Run last debug configuration |
+| `<leader>w` | Open DAP UI |
+| `<leader>W` | Close DAP UI |
+
+### 🌳 Git & Utilities
+
+| Key | Action |
+|-----|--------|
+| `<leader>u` | Toggle Undotree |
+
+### 🪟 Tmux Integration
+
+| Key | Action |
+|-----|--------|
+| `<leader>t1-9` | Switch to tmux window 1-9 |
+| `<leader>n` | Next tmux window |
+| `<leader>p` | Previous tmux window |
+
+### ⌨️ Special Keys
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `<F13>` / `<S-F1>` | All | Save file (mapped to CapsLock) |
+| `<F20>` | All | Run goimports and save |
 
 ## 🔄 Updating
 

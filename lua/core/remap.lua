@@ -4,8 +4,6 @@
 vim.g.mapleader = " "
 -- use sapce-f-t to open the standard vim file navigation
 vim.keymap.set("n", "<leader>ft", vim.cmd.Ex)
--- toggle Copilot on/off - disabled on start
-vim.api.nvim_set_keymap('n', '<leader>cc', ':lua ToggleCopilot()<CR>', { noremap = true, silent = true })
 -- Capslock is mapped to F13 - always escapes modes and saves file
 vim.api.nvim_set_keymap('i', '<F20>', '<Esc>:%!goimports<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<F20>', '<Esc>:%!goimports<CR>', { noremap = true, silent = true })
