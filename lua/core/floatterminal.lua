@@ -1,4 +1,5 @@
-vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
+vim.keymap.set("t", "<esc>", "<c-\\><c-n>")
+vim.keymap.set("t", "<leader><esc>", "<esc>")
 
 local state = {
     floating = {
