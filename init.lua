@@ -1,2 +1,2 @@
-require("lio")
-require("lio.lazy")
+require("core")
+require("core.lazy")
