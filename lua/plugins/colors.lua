@@ -19,11 +19,5 @@ return {
             
             SetTheme()
         end
-    },
-    {
-        'folke/tokyonight.nvim',
-        lazy = false,
-        priority = 1000,
-        branch = 'main',
     }
 }
