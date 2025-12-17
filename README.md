@@ -156,9 +156,12 @@ Leader key: `<Space>`
 | Key | Mode | Action |
 |-----|------|--------|
 | `<leader>tt` | Normal/Terminal | Toggle floating terminal window |
-| `<esc><esc>` | Terminal | Exit terminal mode to normal mode |
+| `<esc>` | Terminal | Exit terminal mode to normal mode |
+| `<leader><esc>` | Terminal | Send ESC to terminal application |
 | `<leader>ta` | Normal (in terminal) | Add new terminal tab |
 | `<leader>tw` | Normal (in terminal) | Close current terminal tab |
+| `H` | Normal (in terminal) | Switch to previous terminal tab |
+| `L` | Normal (in terminal) | Switch to next terminal tab |
 | `1-9` | Normal (in terminal) | Jump directly to terminal tab 1-9 |
 
 ### 🔧 LSP (Language Server)
