@@ -12,8 +12,19 @@ return {
             }
         },
         opts = {
+            display = {
+                inline = {
+                    enabled = false,
+                },
+            },
             interactions = {
                 chat = {
+                    adapter = {
+                        name = "copilot",
+                        model = "claude-sonnet-4.5",
+                    },
+                },
+                code = {
                     adapter = {
                         name = "copilot",
                         model = "claude-sonnet-4.5",
