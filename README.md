@@ -1,439 +1,318 @@
 <div align="center">
 
-# Neovim Config
+<img src="https://raw.githubusercontent.com/neovim/neovim.github.io/master/logos/neovim-mark-flat.png" width="120" alt="Neovim Logo">
 
-### *Minimal. Powerful. Beautiful.*
+<h1>neovim-config</h1>
 
-[![Neovim](https://img.shields.io/badge/Neovim-0.10%2B-57A143?style=for-the-badge&logo=neovim&logoColor=white)](https://neovim.io/)
-[![Lua](https://img.shields.io/badge/Lua-2C2D72?style=for-the-badge&logo=lua&logoColor=white)](https://www.lua.org/)
-[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
+<p><em>Minimal. Powerful. Beautiful.</em></p>
 
-<br>
-
-*A carefully crafted Neovim configuration that balances power with simplicity.*
-*Zero bloat. Maximum productivity.*
+[![Neovim](https://img.shields.io/badge/Neovim-0.10%2B-57A143?style=flat-square&logo=neovim&logoColor=white)](https://neovim.io/)
+[![Lua](https://img.shields.io/badge/Lua-2C2D72?style=flat-square&logo=lua&logoColor=white)](https://www.lua.org/)
+[![License](https://img.shields.io/badge/License-MIT-6a9bcc?style=flat-square)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/BKR-dev/neovim-config?style=flat-square&color=d97757)](https://github.com/BKR-dev/neovim-config/stargazers)
 
 <br>
 
-**[Features](#-features)** · **[Installation](#-quick-start)** · **[Keybindings](#-keybindings)** · **[Customization](#-configuration)**
-
----
+> A hand-rolled Neovim config that gives you full LSP, debugging, fuzzy-finding,  
+> and a tabbed floating terminal — without the 400 ms startup tax of a distro.
 
 <br>
 
-<img src="https://raw.githubusercontent.com/neovim/neovim.github.io/master/logos/neovim-mark-flat.png" width="100" alt="Neovim Logo">
+[**Features**](#-features) · [**Install**](#-quick-start) · [**Keybindings**](#️-keybindings) · [**Structure**](#-structure) · [**Customization**](#-customization)
 
 </div>
 
-<br>
-
-## Why This Config?
-
-> **"The right tool, without the clutter."**
-
-Unlike heavyweight distributions like LazyVim or NvChad, this configuration gives you:
-
-- **Instant startup** — Lazy-loaded plugins, no waiting
-- **Full control** — Clean, readable code you can actually understand
-- **Battle-tested** — Used daily in production development
-- **Go-optimized** — First-class Go support with 20+ gopls enhancements
-- **Terminal-first** — Custom floating terminal with tabs, deep Tmux integration
-
-<br>
-
 ---
 
-<br>
+## Why not LazyVim / NvChad?
+
+Distros are great until they aren't. This config gives you:
+
+| | This config | LazyVim / NvChad |
+|---|---|---|
+| Startup | **< 40 ms** | 80–200 ms |
+| Lines of config | **~600** | 2 000–5 000+ |
+| You understand 100% of it | **Yes** | Rarely |
+| Go-first tooling | **Yes** | Generic |
+| Floating terminal with tabs | **Yes** | No |
+
+---
 
 ## ✨ Features
 
 <table>
 <tr>
-<td width="50%">
+<td valign="top" width="50%">
 
-### Core
-- **Lazy.nvim** — Lightning-fast plugin manager
-- **LSP Zero** — Opinionated LSP framework
-- **Mason** — Auto-install language servers
-- **Treesitter** — Modern syntax highlighting
+**Core**
+- [lazy.nvim](https://github.com/folke/lazy.nvim) — lazy-loaded plugin manager
+- [LSP Zero](https://github.com/VonHeikemen/lsp-zero.nvim) + [Mason](https://github.com/williamboman/mason.nvim) — one-line LSP setup
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) — precise syntax trees
+- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) — 9 completion sources
 
 </td>
-<td width="50%">
+<td valign="top" width="50%">
 
-### Navigation
-- **Telescope** — Fuzzy find anything
-- **Harpoon** — Instant file switching
-- **Tmux Navigator** — Seamless pane movement
-- **Undotree** — Visual undo history
+**Navigation**
+- [Telescope](https://github.com/nvim-telescope/telescope.nvim) — fuzzy find files, grep, buffers
+- [Harpoon 2](https://github.com/ThePrimeagen/harpoon) — instant bookmarked-file switching
+- [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator) — seamless pane jumps
+- [Undotree](https://github.com/mbbill/undotree) — visual undo history
 
 </td>
 </tr>
 <tr>
-<td width="50%">
+<td valign="top">
 
-### Editing
-- **nvim-cmp** — 9 completion sources
-- **LuaSnip** — Powerful snippets
-- **Auto-pairs** — Smart bracket closing
-- **Comment.nvim** — Easy commenting
+**Editing**
+- [LuaSnip](https://github.com/L3MON4D3/LuaSnip) — snippets with Go error templates
+- [nvim-autopairs](https://github.com/windwp/nvim-autopairs) — smart bracket closing
+- [Comment.nvim](https://github.com/numToStr/Comment.nvim) — `gc` to comment anything
+- Format-on-save via LSP
 
 </td>
-<td width="50%">
+<td valign="top">
 
-### Developer Experience
-- **DAP Debugging** — Full debugger support
-- **Floating Terminal** — Tabbed terminal UI
-- **Auto-format** — Format on save
-- **Go Snippets** — Error handling templates
+**Developer Experience**
+- [nvim-dap](https://github.com/mfussenegger/nvim-dap) + [dap-ui](https://github.com/rcarriga/nvim-dap-ui) — full debugger
+- **Floating terminal** — tabbed, persistent, `<Space>tt` to toggle
+- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) — minimal status line
+- [Palenightfall](https://github.com/JoosepAlviste/palenightfall.nvim) theme, transparent bg
 
 </td>
 </tr>
 </table>
 
-<br>
-
 ### Language Support
 
-| Language | Features |
-|:---------|:---------|
-| **Go** | Full gopls integration, auto-imports, gofumpt, error snippets, DAP debugging |
-| **Lua** | lua_ls with Neovim API completion |
-| **Terraform** | terraformls with syntax highlighting |
-| **TypeScript** | Full LSP support via Mason |
-| **YAML/JSON** | Schema validation, formatting |
-| **+ More** | Bash, Docker, SQL, Markdown, HTML... |
-
-<br>
+| Language | LSP | Format | Debug | Extras |
+|---|---|---|---|---|
+| **Go** | `gopls` | `gofumpt` + goimports | `delve` | 5 error-handling snippets |
+| **Lua** | `lua_ls` | stylua | — | Neovim API completion |
+| **TypeScript** | `ts_ls` | prettier | — | |
+| **Terraform** | `terraformls` | — | — | |
+| **YAML / JSON** | `yamlls` / `jsonls` | — | — | Schema validation |
+| **+** | Bash, Docker, SQL, Markdown, HTML | | | |
 
 ---
 
-<br>
-
 ## 🚀 Quick Start
 
-### Prerequisites
+**Requirements:** Neovim ≥ 0.10 · Git · Node.js · ripgrep · a [Nerd Font](https://www.nerdfonts.com/)
 
+```bash
+# Install prerequisites (macOS)
+brew install neovim ripgrep node && brew install --cask font-hack-nerd-font
+
+# One-command install
+bash <(curl -fsSL https://raw.githubusercontent.com/BKR-dev/neovim-config/master/setup.sh)
 ```
-Neovim ≥ 0.10.0  •  Git  •  Node.js  •  Ripgrep  •  Nerd Font
-```
+
+The installer backs up your existing config, clones this repo, and runs `:Lazy sync` automatically.
 
 <details>
-<summary><b>📦 Install prerequisites by platform</b></summary>
+<summary>Manual installation</summary>
 
-<br>
-
-**macOS**
 ```bash
-brew install neovim git node ripgrep
-brew install --cask font-hack-nerd-font
+# Back up existing config
+mv ~/.config/nvim{,.bak} 2>/dev/null; mv ~/.local/share/nvim{,.bak} 2>/dev/null
+
+# Clone
+git clone https://github.com/BKR-dev/neovim-config.git ~/.config/nvim
+
+# Open Neovim — plugins install on first launch
+nvim
 ```
 
-**Arch Linux**
-```bash
-sudo pacman -S neovim git nodejs npm ripgrep
-yay -S ttf-hack-nerd
-```
+Then run `:Mason` to install any extra language servers.
 
-**Ubuntu/Debian**
+</details>
+
+<details>
+<summary>Arch / Ubuntu</summary>
+
 ```bash
-# Install latest Neovim from GitHub releases
+# Arch
+sudo pacman -S neovim git nodejs npm ripgrep && yay -S ttf-hack-nerd
+
+# Ubuntu (install Neovim from GitHub releases for 0.10+)
 sudo apt install git nodejs npm ripgrep
 ```
 
 </details>
 
-<br>
-
-### One-Command Install
-
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/BKR-dev/neovim-config/master/setup.sh)
-```
-
-This automatically:
-- ✓ Backs up your existing config
-- ✓ Clones and installs plugins
-- ✓ Configures LSP servers
-- ✓ Cleans up old plugin managers
-
-<br>
-
-<details>
-<summary><b>📖 Manual installation</b></summary>
-
-<br>
-
-```bash
-# Backup existing config
-mv ~/.config/nvim ~/.config/nvim.bak
-mv ~/.local/share/nvim ~/.local/share/nvim.bak
-
-# Clone this config
-git clone https://github.com/BKR-dev/neovim-config.git ~/.config/nvim
-
-# Launch Neovim (plugins install automatically)
-nvim
-
-# Install language servers
-:Mason
-```
-
-</details>
-
-<br>
-
 ---
-
-<br>
 
 ## ⌨️ Keybindings
 
-<kbd>Space</kbd> is the leader key.
+Leader key: `<Space>`
 
-<br>
+### Files & Navigation
 
-### Navigation
-
-| Keymap | Action |
-|:-------|:-------|
-| <kbd>Space</kbd> <kbd>f</kbd> <kbd>f</kbd> | Find files |
-| <kbd>Space</kbd> <kbd>f</kbd> <kbd>g</kbd> | Live grep |
-| <kbd>Space</kbd> <kbd>f</kbd> <kbd>b</kbd> | Browse buffers |
-| <kbd>Space</kbd> <kbd>f</kbd> <kbd>t</kbd> | File explorer |
-| <kbd>Ctrl</kbd> <kbd>e</kbd> | Harpoon menu |
-| <kbd>Space</kbd> <kbd>a</kbd> | Add to Harpoon |
-| <kbd>Space</kbd> <kbd>1-4</kbd> | Jump to Harpoon 1-4 |
-
-<br>
+| Key | Action |
+|---|---|
+| `<Space>ff` | Find files |
+| `<Space>fg` | Live grep |
+| `<Space>fb` | Browse buffers |
+| `<Space>ft` | File explorer |
+| `<Space>a` | Add file to Harpoon |
+| `<C-e>` | Harpoon quick menu |
+| `<Space>1–4` | Jump to Harpoon file 1–4 |
+| `<Space>8–0` | Jump to Harpoon file 5–7 |
 
 ### LSP
 
-| Keymap | Action |
-|:-------|:-------|
-| <kbd>g</kbd> <kbd>d</kbd> | Go to definition |
-| <kbd>K</kbd> | Hover documentation |
-| <kbd>Space</kbd> <kbd>c</kbd> <kbd>a</kbd> | Code actions |
-| <kbd>Space</kbd> <kbd>r</kbd> <kbd>n</kbd> | Rename symbol |
-| <kbd>Space</kbd> <kbd>l</kbd> <kbd>d</kbd> | Diagnostic details |
-| <kbd>[</kbd> <kbd>d</kbd> / <kbd>]</kbd> <kbd>d</kbd> | Prev/Next diagnostic |
-
-<br>
+| Key | Action |
+|---|---|
+| `gd` | Go to definition |
+| `K` | Hover docs |
+| `<Space>ca` | Code actions |
+| `<Space>rn` | Rename symbol |
+| `<Space>ld` | Diagnostic float |
+| `[d` / `]d` | Prev / next diagnostic |
 
 ### Floating Terminal
 
-| Keymap | Action |
-|:-------|:-------|
-| <kbd>Space</kbd> <kbd>t</kbd> <kbd>t</kbd> | Toggle terminal |
-| <kbd>Space</kbd> <kbd>t</kbd> <kbd>a</kbd> | Add terminal tab |
-| <kbd>Space</kbd> <kbd>t</kbd> <kbd>w</kbd> | Close terminal tab |
-| <kbd>H</kbd> / <kbd>L</kbd> | Switch tabs |
-| <kbd>1-9</kbd> | Jump to tab |
-| <kbd>Esc</kbd> | Exit terminal mode |
-
-<br>
+| Key | Action |
+|---|---|
+| `<Space>tt` | Toggle terminal |
+| `<Space>ta` | New terminal tab |
+| `<Space>tw` | Close terminal tab |
+| `H` / `L` | Switch tabs left / right |
+| `1–9` | Jump to tab N |
+| `<Esc>` | Exit terminal mode |
 
 ### Debugging (DAP)
 
-| Keymap | Action |
-|:-------|:-------|
-| <kbd>Space</kbd> <kbd>d</kbd> <kbd>w</kbd> | Start/Continue |
-| <kbd>Space</kbd> <kbd>d</kbd> <kbd>o</kbd> | Step over |
-| <kbd>Space</kbd> <kbd>d</kbd> <kbd>i</kbd> | Step into |
-| <kbd>Space</kbd> <kbd>q</kbd> | Toggle breakpoint |
-| <kbd>Space</kbd> <kbd>w</kbd> | Open DAP UI |
+| Key | Action |
+|---|---|
+| `<Space>dw` | Continue / start |
+| `<Space>do` | Step over |
+| `<Space>di` | Step into |
+| `<Space>q` | Toggle breakpoint |
+| `<Space>w` | Open DAP UI |
 
-<br>
+### Tmux Integration
 
-<details>
-<summary><b>📋 All keybindings</b></summary>
+| Key | Action |
+|---|---|
+| `<C-h/j/k/l>` | Navigate Neovim + Tmux panes |
+| `<Space>t1–9` | Switch to Tmux window N |
+| `<Space>n` / `<Space>p` | Next / prev Tmux window |
 
-<br>
+### Utilities
 
-#### Harpoon (Quick Files)
-| Keymap | Action |
-|:-------|:-------|
-| <kbd>Space</kbd> <kbd>a</kbd> | Add file to Harpoon |
-| <kbd>Ctrl</kbd> <kbd>e</kbd> | Toggle Harpoon menu |
-| <kbd>Space</kbd> <kbd>1</kbd> | Harpoon file 1 |
-| <kbd>Space</kbd> <kbd>2</kbd> | Harpoon file 2 |
-| <kbd>Space</kbd> <kbd>3</kbd> | Harpoon file 3 |
-| <kbd>Space</kbd> <kbd>4</kbd> | Harpoon file 4 |
-| <kbd>Space</kbd> <kbd>8</kbd> | Harpoon file 5 |
-| <kbd>Space</kbd> <kbd>9</kbd> | Harpoon file 6 |
-| <kbd>Space</kbd> <kbd>0</kbd> | Harpoon file 7 |
-
-#### Tmux Integration
-| Keymap | Action |
-|:-------|:-------|
-| <kbd>Ctrl</kbd> <kbd>h/j/k/l</kbd> | Navigate panes |
-| <kbd>Space</kbd> <kbd>t</kbd> <kbd>1-9</kbd> | Switch tmux window |
-| <kbd>Space</kbd> <kbd>n</kbd> | Next tmux window |
-| <kbd>Space</kbd> <kbd>p</kbd> | Previous tmux window |
-
-#### Utilities
-| Keymap | Action |
-|:-------|:-------|
-| <kbd>Space</kbd> <kbd>u</kbd> | Toggle Undotree |
-| <kbd>F13</kbd> | Save file (CapsLock) |
-| <kbd>F20</kbd> | Go imports + save |
-
-</details>
-
-<br>
+| Key | Action |
+|---|---|
+| `<Space>u` | Toggle Undotree |
+| `F13` (CapsLock) | Save file |
+| `F20` | Go imports + save |
 
 ---
 
-<br>
-
-## 📁 Configuration
+## 📁 Structure
 
 ```
 ~/.config/nvim/
-├── init.lua                    # Entry point
+├── init.lua                    ← entry point
 ├── lua/
 │   ├── core/
-│   │   ├── init.lua           # Core initialization
-│   │   ├── lazy.lua           # Plugin manager setup
-│   │   ├── set.lua            # Vim options
-│   │   ├── remap.lua          # Key mappings
-│   │   └── floatterminal.lua  # Floating terminal
+│   │   ├── lazy.lua            ← plugin manager bootstrap
+│   │   ├── set.lua             ← vim options
+│   │   ├── remap.lua           ← global keymaps
+│   │   └── floatterminal.lua   ← tabbed floating terminal
 │   ├── plugins/
-│   │   ├── lsp.lua            # LSP & completion
-│   │   ├── telescope.lua      # Fuzzy finder
-│   │   ├── treesitter.lua     # Syntax
-│   │   ├── harpoon.lua        # Quick navigation
-│   │   ├── debugging.lua      # DAP setup
-│   │   ├── colors.lua         # Theme
-│   │   ├── lualine.lua        # Status line
-│   │   └── utils.lua          # Utilities
+│   │   ├── lsp.lua             ← LSP + Mason + nvim-cmp
+│   │   ├── telescope.lua       ← fuzzy finder
+│   │   ├── treesitter.lua      ← syntax / indent
+│   │   ├── harpoon.lua         ← quick file switching
+│   │   ├── debugging.lua       ← DAP + dap-ui
+│   │   ├── colors.lua          ← theme + highlights
+│   │   ├── lualine.lua         ← status line
+│   │   └── utils.lua           ← autopairs, comment, undotree
 │   └── snippets/
-│       └── go.lua             # Go error snippets
-└── setup.sh                    # Install script
+│       └── go.lua              ← Go error-handling snippets
+└── setup.sh                    ← one-command installer
 ```
 
-<br>
-
 ---
-
-<br>
 
 ## 🎨 Customization
 
 ### Theme
 
-Uses **Palenightfall** with custom overrides for:
-- Transparent background (blends with terminal)
-- Custom line numbers and comments
-- Magenta matching brackets
+[Palenightfall](https://github.com/JoosepAlviste/palenightfall.nvim) with:
+- Transparent background (inherits terminal color)
+- Custom comment, line-number, and matching-bracket colors
 
-Edit `lua/plugins/colors.lua` to customize.
-
-<br>
+Edit `lua/plugins/colors.lua` to swap themes or tweak highlights.
 
 ### Go Snippets
 
-Built-in error handling snippets:
-
 | Trigger | Expands to |
-|:--------|:-----------|
-| `iferr` | Basic `if err != nil { return err }` |
-| `iferrwrap` | Wrapped error with `fmt.Errorf` |
+|---|---|
+| `iferr` | `if err != nil { return err }` |
+| `iferrwrap` | `fmt.Errorf("...: %w", err)` |
 | `iferrpanic` | `if err != nil { panic(err) }` |
-| `iferrlog` | Error with `log.Println` |
-| `iferrfatal` | Error with `log.Fatal` |
+| `iferrlog` | `log.Println(err)` guard |
+| `iferrfatal` | `log.Fatal(err)` guard |
 
-<br>
-
-### Adding Plugins
+### Adding a Plugin
 
 ```lua
 -- lua/plugins/my-plugin.lua
 return {
   "author/plugin-name",
+  event = "VeryLazy",   -- or BufEnter, etc.
   config = function()
-    require("plugin-name").setup({})
+    require("plugin-name").setup({
+      -- your options
+    })
   end,
 }
 ```
 
-<br>
-
 ---
-
-<br>
 
 ## 🔧 Maintenance
 
-### Update
-
 ```bash
-cd ~/.config/nvim && git pull
-nvim -c "Lazy sync"
+# Pull latest config + sync plugins
+cd ~/.config/nvim && git pull && nvim -c "Lazy sync"
 ```
-
-### Health Check
 
 ```vim
-:checkhealth
+:checkhealth          " full health report
+:Lazy sync            " reinstall / update plugins
+:Mason                " manage LSP servers
+:LspInfo              " active LSP clients
 ```
-
-### Troubleshooting
-
-```vim
-:Lazy sync      " Reinstall plugins
-:Mason          " Manage LSP servers
-:LspInfo        " LSP status
-```
-
-<br>
 
 ---
-
-<br>
 
 ## 🗑️ Uninstall
 
 ```bash
 rm -rf ~/.config/nvim ~/.local/share/nvim ~/.local/state/nvim
-# Restore backup if needed:
-mv ~/.config/nvim.bak ~/.config/nvim
+mv ~/.config/nvim.bak ~/.config/nvim   # restore backup
 ```
-
-<br>
 
 ---
 
-<br>
-
-<div align="center">
-
-## 💡 Pro Tips
-
-</div>
+## 💡 Shell Aliases
 
 ```bash
-# Add to your shell config (~/.zshrc or ~/.bashrc)
-
+# ~/.zshrc or ~/.bashrc
 alias v='nvim'
-alias fp='cd $(find ~/projects -maxdepth 1 -type d | fzf) && v .'
+alias fp='cd $(find ~/projects -maxdepth 1 -type d | fzf) && nvim .'
 ```
-
-<br>
 
 ---
 
-<br>
-
 <div align="center">
 
-### Built with precision for developers who value their time.
+Built for developers who value their time.
 
-<br>
-
-**[⬆ Back to top](#neovim-config)**
-
-<br>
-
-<sub>Made with ❤️ by <a href="https://github.com/BKR-dev">BKR-dev</a></sub>
+<sub><a href="https://github.com/BKR-dev">BKR-dev</a></sub>
 
 </div>
