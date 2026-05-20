@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/neovim/neovim.github.io/master/logos/neovim-mark-flat.png" width="120" alt="Neovim Logo">
+<img src="https://raw.githubusercontent.com/neovim/neovim.github.io/main/logos/neovim-mark-flat.png" width="120" alt="Neovim Logo">
 
 <h1>neovim-config</h1>
 
