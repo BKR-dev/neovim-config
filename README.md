@@ -30,11 +30,27 @@ Distros are great until they aren't. This config gives you:
 
 | | This config | LazyVim / NvChad |
 |---|---|---|
-| Startup | **< 40 ms** | 80–200 ms |
+| Startup | **~18 ms** | 80–200 ms |
 | Lines of config | **~600** | 2 000–5 000+ |
 | You understand 100% of it | **Yes** | Rarely |
 | Go-first tooling | **Yes** | Generic |
 | Floating terminal with tabs | **Yes** | No |
+
+### ⚡ Startup performance
+
+Aggressive lazy-loading dropped startup from **454 ms → ~18 ms** (~25× faster).
+Heavy plugins no longer load at launch — they're deferred until first used:
+
+| Plugin | Loads on |
+|---|---|
+| nvim-dap + dap-ui + dap-go | first debug keypress (`<Space>dw`, `<Space>q`, …) |
+| Mason / LSP Zero / nvim-lspconfig | opening a real file (`BufReadPre`) |
+| Telescope | `:Telescope` or `<Space>ff`/`fg`/`fb`/`fp`/`fh` |
+| Harpoon | its `<Space>a`, `<C-e>`, `<Space>1–0` keys |
+| lualine | `VeryLazy` (just after the UI draws) |
+| undotree / fugitive / no-neck-pain | their command or keymap |
+
+Measured with `nvim --headless --startuptime` (Neovim 0.12, three-run average).
 
 ---
 
