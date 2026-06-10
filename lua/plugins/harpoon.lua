@@ -1,5 +1,10 @@
 return {
     "theprimeagen/harpoon",
+    keys = {
+        "<leader>a", "<C-e>",
+        "<leader>1", "<leader>2", "<leader>3", "<leader>4",
+        "<leader>8", "<leader>9", "<leader>0",
+    },
     config = function()
         local mark = require("harpoon.mark")
         local ui = require("harpoon.ui")

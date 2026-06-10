@@ -2,17 +2,17 @@ return {
     {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v3.x',
-        lazy = false,
+        lazy = true,        -- loads as a dependency of nvim-lspconfig
         config = false,
     },
     {
         'williamboman/mason.nvim',
-        lazy = false,
+        cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUninstallAll", "MasonLog", "MasonUpdate" },
         config = true,
     },
     {
         'williamboman/mason-lspconfig.nvim',
-        lazy = false,
+        lazy = true,        -- loads as a dependency of nvim-lspconfig
         dependencies = {
             { 'williamboman/mason.nvim' },
         },
@@ -136,7 +136,7 @@ return {
     },
     {
         'neovim/nvim-lspconfig',
-        lazy = false,
+        event = { "BufReadPre", "BufNewFile" },  -- load LSP only when a real file opens
         dependencies = {
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'williamboman/mason-lspconfig.nvim' },

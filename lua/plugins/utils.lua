@@ -55,6 +55,7 @@ return {
     },
     {
         'numToStr/Comment.nvim',
+        event = "VeryLazy",
         config = function()
             require('Comment').setup({
                 sticky = true,
@@ -64,12 +65,15 @@ return {
     },
     {
         'folke/todo-comments.nvim',
+        event = { "BufReadPost", "BufNewFile" },
         dependencies = "nvim-lua/plenary.nvim",
         config = function()
             require("todo-comments").setup()
         end
     },
-    { "shortcuts/no-neck-pain.nvim", version = "*", 
+    { "shortcuts/no-neck-pain.nvim", version = "*",
+        cmd = "NoNeckPain",
+        keys = { "<Leader>nn" },
         config = function()
             require("no-neck-pain").setup({
                 width = 120,
@@ -89,7 +93,7 @@ return {
             })
         end
     },
-    'mbbill/undotree',
-    'tpope/vim-fugitive',
-    'MunifTanjim/nui.nvim',
+    { 'mbbill/undotree', cmd = { "UndotreeToggle", "UndotreeShow", "UndotreeFocus" } },
+    { 'tpope/vim-fugitive', cmd = { "Git", "G", "Gdiffsplit", "Gread", "Gwrite", "Gblame", "Gedit" } },
+    { 'MunifTanjim/nui.nvim', lazy = true },
 }

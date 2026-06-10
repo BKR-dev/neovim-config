@@ -1,6 +1,12 @@
 return {
     {
         'mfussenegger/nvim-dap',
+        -- Lazy: the whole dap/dapui/nio stack only loads on first debug keypress.
+        keys = {
+            "<Leader>dw", "<Leader>do", "<Leader>di", "<Leader>d",
+            "<Leader>q", "<Leader>Q", "<Leader>lp", "<Leader>dr",
+            "<Leader>dl", "<Leader>w", "<Leader>W",
+        },
         dependencies = {
             "rcarriga/nvim-dap-ui",
             "leoluz/nvim-dap-go",
